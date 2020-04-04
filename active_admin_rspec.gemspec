@@ -26,4 +26,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'activeadmin'
+  # spec.add_dependency 'devise'
+  spec.add_dependency 'rspec', '~> 3.0'
 end
