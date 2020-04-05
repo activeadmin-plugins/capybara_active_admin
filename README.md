@@ -74,6 +74,7 @@ end
 ```
 
 See `spec/support` for more user examples.
+See `capybara/active_admin/test_helpers.rb` for available DSL methods.
 
 ## Development
 
