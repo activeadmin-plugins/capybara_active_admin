@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'lib/active_admin_rspec/version'
+require_relative 'lib/capybara/active_admin/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'active_admin_rspec'
-  spec.version       = ActiveAdminRspec::VERSION
+  spec.name          = 'capybara_active_admin'
+  spec.version       = Capybara::ActiveAdmin::VERSION
   spec.authors       = ['Denis Talakevich']
   spec.email         = ['senid231@gmail.com']
 
-  spec.summary       = 'RSpec system tests DSL for active_admin'
-  spec.description   = 'RSpec system tests DSL for fast and easy active_admin testing.'
-  spec.homepage      = 'https://github.com/senid231/active_admin_rspec'
+  spec.summary       = 'Capybara DSL for fast and easy testing Active Admin applications.'
+  spec.description   = 'Capybara DSL for fast and easy testing Active Admin applications.'
+  spec.homepage      = 'https://github.com/active_admin_plugins/capybara_active_admin'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 

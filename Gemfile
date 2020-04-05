@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in active_admin_rspec.gemspec
+# Specify your gem's dependencies in capybara_active_admin.gemspec
 gemspec
 
 gem 'capybara'

@@ -35,7 +35,7 @@ RSpec.describe 'Users index', js: true do
       expect(page).to_not have_table_col('John Doe', row_id: jane.id)
       expect(page).to_not have_table_col('John Doe', row_id: jane.id, col_name: 'Full Name')
     end
-    take_screenshot
+    # take_screenshot
   end
 
   # todo filters expect to have

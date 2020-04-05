@@ -40,7 +40,7 @@ class TestApplication < Rails::Application
   config.eager_load = false
   config.logger = ActiveRecord::Base.logger
 
-  config.hosts = %w[www.example.com 127.0.0.1]
+  config.hosts = %w[127.0.0.1]
 
   # Configure sprockets assets
   config.assets.paths = [File.join(config.root, 'assets')]
@@ -59,15 +59,17 @@ class ApplicationController < ActionController::Base
   def render_server_error(error)
     log_error(error)
     respond_with do |format|
+      # we will see exceptions in failed screenshots
       format.html do
         msg = "<h2>#{error.class}: #{error.message}<h2>"
         bt = error.backtrace.map { |line| "<div>#{line}</div>" }
         html = "<h1>Something went wrong</h1>#{msg}#{bt.join}".html_safe
         render status: 500, html: html
       end
-      format.json { render status: 500, json: { error: 'server_error' } }
+      format.json do
+        render status: 500, json: { error: 'server_error' }
+      end
     end
-    # render status: 500, html: '<span>Something went wrong</span>'
   end
 
   def log_error(error, causes: [])
@@ -80,6 +82,7 @@ class ApplicationController < ActionController::Base
 end
 
 class User < ActiveRecord::Base
+  validates :full_name, presence: true
 end
 
 ActiveAdmin.setup do |config|

@@ -1,6 +1,12 @@
 ---
 language: ruby
 cache: bundler
-rvm:
-  - 2.5.7
+jobs:
+  include:
+    - rvm: 2.5.7
+      env: RAILS_VERSION="~> 6.0"
+    - rvm: 2.5.7
+      env: RAILS_VERSION="~> 5.0"
+    - rvm: 2.3.8
+      env: RAILS_VERSION="~> 5.2"
 before_install: gem install bundler -v 2.1.4

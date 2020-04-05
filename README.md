@@ -1,15 +1,15 @@
-# ActiveAdminRspec
+# Capybara Active Admin
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/active_admin_rspec`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Capybara DSL for fast and easy testing Active Admin applications.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'active_admin_rspec'
+group :test do
+  gem 'capybara_active_admin'
+end
 ```
 
 And then execute:
@@ -18,11 +18,62 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install active_admin_rspec
+    $ gem install capybara_active_admin
 
 ## Usage
 
-TODO: Write usage instructions here
+`rails_helper.rb`
+```ruby
+require 'capybara/active_admin/rspec'
+```
+
+`spec/system/users_spec.rb`
+```ruby
+RSpec.describe 'Users', js: true do
+  subject do
+    visit admin_users_path
+  end
+
+  let!(:john) { User.create!(full_name: 'John Doe') }
+  let!(:jane) { User.create!(full_name: 'Jane Air') }
+
+  it 'have john and jane in users table' do
+    subject
+
+    expect(page).to have_action_item('New User')
+    expect(page).to_not have_action_item('Edit User')
+
+    with_table_for('users') do
+      expect(page).to have_table_row(count: 2)
+      expect(page).to have_table_col('John Doe')
+      expect(page).to have_table_col('John Doe', row_id: john.id)
+      expect(page).to have_table_col('John Doe', row_id: john.id, col_name: 'Full Name')
+
+      expect(page).to_not have_table_col('John Doe', row_id: john.id, col_name: 'Id')
+      expect(page).to_not have_table_col('John Doe', row_id: jane.id)
+      expect(page).to_not have_table_col('John Doe', row_id: jane.id, col_name: 'Full Name')
+    end
+  end
+
+  it 'creates user' do
+    subject
+
+    click_action_item('New User')
+    expect(page).to have_current_path(new_admin_user_path)
+
+    fill_in 'Full name', with: 'Johny Cage'
+    click_button 'Create User'
+    expect(page).to have_flash_message('User was successfully created.', type: :notice)
+    user = User.last!
+    expect(page).to have_current_path admin_user_path(user.id)
+
+    expect(User.count).to eq(1)
+    expect(user).to have_attributes(full_name: 'Johny Cage')
+  end
+end
+```
+
+See `spec/support` for more user examples.
 
 ## Development
 
@@ -32,8 +83,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/active_admin_rspec. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/active_admin_rspec/blob/master/CODE_OF_CONDUCT.md).
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/activeadmin-plugins/capybara_active_admin. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/activeadmin-plugins/capybara_active_admin/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -41,4 +91,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the ActiveAdminRspec project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/active_admin_rspec/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Capybara::ActiveAdmin project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/activeadmin-plugins/capybara_active_admin/blob/master/CODE_OF_CONDUCT.md).
