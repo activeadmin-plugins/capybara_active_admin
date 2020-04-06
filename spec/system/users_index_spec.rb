@@ -38,7 +38,7 @@ RSpec.describe 'Users index', js: true do
     # take_screenshot
   end
 
-  # todo filters expect to have
+  # TODO: filters expect to have
   # todo filters fill and click
   # todo breadcrumbs expect to have
   # todo breadcrumbs click

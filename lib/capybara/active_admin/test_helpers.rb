@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Capybara
   module ActiveAdmin
     module TestHelpers
@@ -20,11 +22,11 @@ module Capybara
       def have_flash_message(text, options = {})
         type = options.delete(:type)
         opts = options.merge(text: text)
-        if type
-          selector = ".flashes .flash.flash_#{type}"
-        else
-          selector = '.flashes .flash'
-        end
+        selector = if type
+                     ".flashes .flash.flash_#{type}"
+                   else
+                     '.flashes .flash'
+                   end
         have_selector(selector, opts)
       end
 
@@ -53,7 +55,7 @@ module Capybara
 
       def table_row_selector(model, row_id: nil)
         model ||= current_table_model
-        raise ArgumentError, "model required when row_id is passed" if row_id && model.nil?
+        raise ArgumentError, 'model required when row_id is passed' if row_id && model.nil?
 
         selector = table_selector(model)
 

@@ -5,11 +5,11 @@ require 'bundler/inline'
 require 'active_record'
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
-if ENV['CI']
-  ActiveRecord::Base.logger = ActiveSupport::Logger.new(STDOUT)
-else
-  ActiveRecord::Base.logger = ActiveSupport::Logger.new(File.join(__dir__, 'log/test.log'))
-end
+ActiveRecord::Base.logger = if ENV['CI']
+                              ActiveSupport::Logger.new(STDOUT)
+                            else
+                              ActiveSupport::Logger.new(File.join(__dir__, 'log/test.log'))
+                            end
 
 ActiveRecord::Schema.define do
   create_table :active_admin_comments do |t|
@@ -74,10 +74,10 @@ class ApplicationController < ActionController::Base
 
   def log_error(error, causes: [])
     logger.error { "<#{error.class}>: #{error.message}\n#{error.backtrace.join("\n")}" }
-    if error.cause && error.cause != error && causes.exclude?(error.cause)
-      causes.push(error)
-      log_error(error, causes)
-    end
+    return if error.cause.nil? || error.cause == error || causes.include?(error.cause)
+
+    causes.push(error)
+    log_error(error, causes)
   end
 end
 
