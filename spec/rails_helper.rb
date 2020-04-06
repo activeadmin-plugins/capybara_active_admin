@@ -28,9 +28,9 @@ end
 cuprite_opts = {
     js_errors: true,
     window_size: [1920, 1080],
-    timeout: 5,
-    process_timeout: 5,
-    url_whitelist: %w(http://127.0.0.1:* http://localhost:* http://lvh.me:*),
+    timeout: 10,
+    process_timeout: 10,
+    url_whitelist: %w[http://127.0.0.1:* http://localhost:* http://lvh.me:*],
     browser_options: {
         'disable-gpu' => nil,
         'no-sandbox' => nil,
@@ -48,7 +48,6 @@ Capybara.register_driver :cuprite do |app|
 end
 
 Capybara.javascript_driver = ENV['JS_DRIVER'].presence&.to_sym || :cuprite_headless
-
 
 # Capybara server
 Capybara.register_server :puma do |app, port, host, options = {}|
