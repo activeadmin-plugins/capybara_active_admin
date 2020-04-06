@@ -28,8 +28,8 @@ end
 cuprite_opts = {
     js_errors: true,
     window_size: [1920, 1080],
-    timeout: 5,
-    process_timeout: 5,
+    timeout: 10,
+    process_timeout: 10,
     url_whitelist: %w[http://127.0.0.1:* http://localhost:* http://lvh.me:*],
     browser_options: {
         'disable-gpu' => nil,
