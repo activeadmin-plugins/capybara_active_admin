@@ -1,5 +1,7 @@
 # Capybara Active Admin
 
+[![Build Status](https://travis-ci.com/activeadmin-plugins/capybara_active_admin.svg?branch=master)](https://travis-ci.com/activeadmin-plugins/capybara_active_admin)
+
 Capybara DSL for fast and easy testing Active Admin applications.
 
 ## Installation
