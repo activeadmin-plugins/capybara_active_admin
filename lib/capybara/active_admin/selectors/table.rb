@@ -4,16 +4,19 @@ module Capybara
   module ActiveAdmin
     module Selectors
       module Table
-        def table_selector(model)
-          return 'table.index_table' if model.nil?
+        def table_selector(resource_name)
+          return 'table.index_table' if resource_name.nil?
 
-          "table.index_table#index_table_#{model.to_s.pluralize}"
+          resource_name = resource_name.to_s.gsub(' ', '_').pluralize.downcase
+          "table#index_table_#{resource_name}"
         end
 
-        def table_row_selector(model, record_id)
+        def table_row_selector(model_name, record_id)
           return 'tbody > tr' if record_id.nil?
 
-          "tbody > tr##{model.to_s.singularize}_#{record_id}"
+          model_name = model_name.model_name.singular if model_name.is_a?(Class)
+          model_name = model_name.to_s.gsub(' ', '_').singularize.downcase
+          "tbody > tr##{model_name}_#{record_id}"
         end
 
         def table_header_selector
@@ -21,9 +24,9 @@ module Capybara
         end
 
         def table_cell_selector(column)
-          column = column.to_s.gsub(' ', '_').downcase unless column.nil?
           return 'td.col' if column.nil?
 
+          column = column.to_s.gsub(' ', '_').downcase
           "td.col.col-#{column}"
         end
       end

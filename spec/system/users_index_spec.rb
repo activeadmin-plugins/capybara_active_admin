@@ -11,6 +11,8 @@ RSpec.describe 'Users index', js: true do
     expect(page).to have_text('There are no Users yet.')
     expect(page).to have_action_item('New User')
     expect(page).to_not have_action_item('Edit User')
+    expect(page).to_not have_table
+    expect(page).to_not have_table(resource_name: 'Users')
   end
 
   it 'clicks on New User' do
@@ -25,7 +27,9 @@ RSpec.describe 'Users index', js: true do
     jane = User.create!(full_name: 'Jane Air')
     subject
 
-    within_table_for('users') do
+    expect(page).to have_table
+    expect(page).to have_table(resource_name: 'Users')
+    within_table_for(User) do
       expect(page).to have_table_row(count: 2)
       expect(page).to have_table_cell(count: 10) # 2x id, full_name, created_at, updated_at, actions
 
@@ -52,9 +56,9 @@ RSpec.describe 'Users index', js: true do
   end
 
   # TODO: filters expect to have
-  # todo filters fill and click
-  # todo breadcrumbs expect to have
-  # todo breadcrumbs click
-  # todo menu items expect to have
-  # todo menu items click
+  # TODO: filters fill and click
+  # TODO: breadcrumbs expect to have
+  # TODO: breadcrumbs click
+  # TODO: menu items expect to have
+  # TODO: menu items click
 end

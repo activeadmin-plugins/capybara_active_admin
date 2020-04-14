@@ -24,6 +24,12 @@ ActiveRecord::Schema.define do
     t.string :full_name
     t.timestamps
   end
+
+  create_table :employees, force: true do |t|
+    t.string :full_name
+    t.decimal :salary
+    t.timestamps
+  end
 end
 
 require 'action_controller/railtie'
@@ -85,6 +91,13 @@ class User < ActiveRecord::Base
   validates :full_name, presence: true
 end
 
+module Billing
+  class Employee < ActiveRecord::Base
+    validates :full_name, presence: true
+    validates :salary, numericality: { greater_than_or_equal_to: 0.01 }
+  end
+end
+
 ActiveAdmin.setup do |config|
   # Disabling authentication in specs so that we don't have to worry about
   # it allover the place
@@ -103,6 +116,10 @@ end
 
 ActiveAdmin.register User do
   permit_params :full_name
+end
+
+ActiveAdmin.register Billing::Employee, as: 'Business Employee' do
+  permit_params :full_name, :salary
 end
 
 Rails.application.routes.draw do
