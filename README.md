@@ -45,15 +45,20 @@ RSpec.describe 'Users', js: true do
     expect(page).to have_action_item('New User')
     expect(page).to_not have_action_item('Edit User')
 
-    with_table_for('users') do
+    within_table_for('users') do
       expect(page).to have_table_row(count: 2)
-      expect(page).to have_table_col('John Doe')
-      expect(page).to have_table_col('John Doe', row_id: john.id)
-      expect(page).to have_table_col('John Doe', row_id: john.id, col_name: 'Full Name')
+      expect(page).to have_table_cell('John Doe')
 
-      expect(page).to_not have_table_col('John Doe', row_id: john.id, col_name: 'Id')
-      expect(page).to_not have_table_col('John Doe', row_id: jane.id)
-      expect(page).to_not have_table_col('John Doe', row_id: jane.id, col_name: 'Full Name')
+      within_table_row(id: john.id) do
+        expect(page).to have_table_cell('John Doe', row_id: john.id)
+        expect(page).to have_table_cell('John Doe', row_id: john.id, col_name: 'Full Name')
+        expect(page).to_not have_table_cell('John Doe', row_id: john.id, col_name: 'Id')
+      end
+
+      within_table_row(id: jane.id) do
+        expect(page).to_not have_table_cell('John Doe')
+        expect(page).to_not have_table_cell('John Doe', col_name: 'Full Name')
+      end
     end
   end
 
@@ -63,8 +68,11 @@ RSpec.describe 'Users', js: true do
     click_action_item('New User')
     expect(page).to have_current_path(new_admin_user_path)
 
-    fill_in 'Full name', with: 'Johny Cage'
-    click_button 'Create User'
+    within_form_for(User) do
+      fill_in 'Full name', with: 'Johny Cage'
+      click_submit 'Create User'
+    end
+
     expect(page).to have_flash_message('User was successfully created.', type: :notice)
     user = User.last!
     expect(page).to have_current_path admin_user_path(user.id)

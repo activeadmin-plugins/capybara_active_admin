@@ -5,7 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Breaking change
+ - rename #have_table_col to #have_table_cell
+ - change options of #have_table_cell
+ - change options of #have_table_row
+
+### Change
+ - refactor modules hierarchy: split DSL into selectors, finders, matchers and actions
+
 ### Added
+ - form DSL
  - changelog
  - follow semver
 
