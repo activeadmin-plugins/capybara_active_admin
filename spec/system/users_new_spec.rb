@@ -11,8 +11,16 @@ RSpec.describe 'Users new', js: true do
     expect(page).to have_title('New User')
     expect(page).to have_page_title('New User')
 
-    fill_in 'Full name', with: 'John Doe'
-    click_button 'Create User'
+    within_form_for(User) do
+      expect(page).to have_input('Full name')
+      expect(page).to have_no_input('Test')
+      fill_in 'Full name', with: 'John Doe'
+      click_submit 'Create User'
+    end
+
+    # TODO: nested has_many
+    # TODO: nested has_one
+
     expect(page).to have_flash_message('User was successfully created.', type: :notice)
     user = User.last!
     expect(page).to have_current_path admin_user_path(user.id)
