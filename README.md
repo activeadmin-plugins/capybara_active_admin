@@ -95,3 +95,8 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the Capybara::ActiveAdmin project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/activeadmin-plugins/capybara_active_admin/blob/master/CODE_OF_CONDUCT.md).
+
+## Notes
+
+Project uses [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
+Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
