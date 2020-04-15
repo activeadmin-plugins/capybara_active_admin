@@ -14,8 +14,7 @@ module Capybara
         def table_row_selector(model_name, record_id)
           return 'tbody > tr' if record_id.nil?
 
-          model_name = model_name.model_name.singular if model_name.is_a?(Class)
-          model_name = model_name.to_s.gsub(' ', '_').singularize.downcase
+          model_name = Util.parse_model_name(model_name)
           "tbody > tr##{model_name}_#{record_id}"
         end
 

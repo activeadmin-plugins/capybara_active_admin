@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- implement DSL for tabs, batch actions, modal dialog, attributes table, panel, sidebar, footer
+- improve form DSL
+
 ## [0.2.1] - 2020-04-14
 ### Fixed
  - `table_selector`, `within_table_for` incorrect resource name

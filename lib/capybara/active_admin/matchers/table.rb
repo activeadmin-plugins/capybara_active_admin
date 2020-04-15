@@ -19,6 +19,7 @@ module Capybara
 
         # @param options [Hash]
         #   :text [String, nil] cell content
+        #   :exact_text [String, nil] cell content exact matching
         #   :id [String, Number, nil] record ID
         #   for other options @see Capybara::RSpecMatchers#have_selector
         # @example
@@ -33,7 +34,8 @@ module Capybara
         end
 
         # @param options [Hash]
-        #   :text [String, nil] cell content
+        #   :text [String, nil] cell content include matching
+        #   :exact_text [String, nil] cell content exact matching
         #   :column [String, nil] cell header name
         #   for other options @see Capybara::RSpecMatchers#have_selector
         # @example

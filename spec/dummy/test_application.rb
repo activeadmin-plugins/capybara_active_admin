@@ -30,6 +30,13 @@ ActiveRecord::Schema.define do
     t.decimal :salary
     t.timestamps
   end
+
+  create_table :duties, force: true do |t|
+    t.string :name
+    t.string :duty_type
+    t.integer :employee_id
+    t.timestamps
+  end
 end
 
 require 'action_controller/railtie'
@@ -93,8 +100,20 @@ end
 
 module Billing
   class Employee < ActiveRecord::Base
+    has_many :duties, class_name: 'Billing::Duty'
+    accepts_nested_attributes_for :duties
     validates :full_name, presence: true
     validates :salary, numericality: { greater_than_or_equal_to: 0.01 }
+  end
+
+  class Duty < ActiveRecord::Base
+    belongs_to :employee, class_name: 'Billing::Employee'
+    validates :name, presence: true
+    validates :duty_type, inclusion: { in: %w[common extra] }
+
+    def common?
+      duty_type == 'common'
+    end
   end
 end
 
@@ -119,7 +138,59 @@ ActiveAdmin.register User do
 end
 
 ActiveAdmin.register Billing::Employee, as: 'Business Employee' do
-  permit_params :full_name, :salary
+  permit_params :full_name, :salary, duties_attributes: [:id, :name, :duty_type]
+  includes :duties
+
+  index do
+    actions
+    id_column
+    column :full_name
+    column(:salary) { |r| number_to_currency(r.salary) }
+    column(:common_duties) { |r| r.duties.select(&:common?).map(&:name).join(', ') }
+    column(:extra_duties) { |r| r.duties.reject(&:common?).map(&:name).join(', ') }
+    column :created_at
+    column :updated_at
+  end
+
+  show do
+    tabs do
+      tab 'Details' do
+        attributes_table do
+          row :id
+          row :full_name
+          row(:salary) { |r| number_to_currency(r.salary) }
+          row :created_at
+          row :updated_at
+        end
+      end
+
+      tab 'Duties' do
+        table_for resource.duties, class: 'index_table' do
+          column :id
+          column :name
+          column :type, :duty_type
+          column :created_at
+          column :updated_at
+        end
+      end
+    end
+  end
+
+  form do |f|
+    f.semantic_errors(*f.object.errors.full_messages)
+
+    f.inputs do
+      f.input :full_name
+      f.input :salary
+    end
+
+    f.has_many :duties do |d|
+      d.input :name
+      d.input :duty_type, label: 'Type', as: :select, collection: %w[common extra]
+    end
+
+    f.actions
+  end
 end
 
 Rails.application.routes.draw do

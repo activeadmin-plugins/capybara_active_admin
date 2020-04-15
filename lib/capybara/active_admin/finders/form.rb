@@ -5,6 +5,7 @@ module Capybara
     module Finders
       module Form
         # @param name [Class<Object>, String] form record class or model name
+        # @yield within form
         def within_form_for(name)
           name = name.model_name.singular if name.is_a?(Class)
           selector = form_selector(name)
@@ -19,6 +20,20 @@ module Capybara
           fieldset = find_all(selector, minimum: index + 1)[index]
 
           within(fieldset) { yield }
+        end
+
+        def find_input(label, options = {})
+          label_opts = Util.options_with_text label, options.slice(:exact)
+          label_node = find(label_selector, label_opts)
+
+          input_id = label_node[:for]
+          opts = options.except(:exact)
+          find("##{input_id}", opts)
+        end
+
+        def within_filters
+          selector = filter_form_selector
+          within(selector) { yield }
         end
       end
     end

@@ -10,7 +10,7 @@ module Capybara
 
         # @param model_name [Class<#model_name>, String] records class or model name to match rows.
         # @param resource_name [String, nil] resource name of index page.
-        # @yield within table.
+        # @yield within table
         def within_table_for(model_name, resource_name = nil)
           selector = table_selector(resource_name)
 
@@ -25,6 +25,9 @@ module Capybara
           end
         end
 
+        # id [String, Integer, nil] record ID.
+        # index [Integer] row index in table (starts with 0).
+        # @yield within table>tbody>tr
         def within_table_row(id: nil, index: nil)
           row = find_table_row(id: id, index: index)
           within(row) { yield }
@@ -43,6 +46,7 @@ module Capybara
           find_all(selector, minimum: index + 1)[index]
         end
 
+        # @yield within table>tbody>tr>td
         def within_table_cell(name)
           cell = find_table_cell(name)
           within(cell) { yield }
