@@ -13,6 +13,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
+# deploying to https://activeadmin-plugins.github.io/capybara_active_admin
 git push -f git@github.com:activeadmin-plugins/capybara_active_admin.git master:gh-pages
 
 cd -
