@@ -13,3 +13,7 @@
 .rspec_status
 
 Gemfile.lock
+
+# docs
+/docs/.vuepress/dist/
+/node_modules/
