@@ -4,6 +4,8 @@
 
 Capybara DSL for fast and easy testing Active Admin applications.
 
+Check out our docs at [activeadmin-plugins.github.io/capybara_active_admin](https://activeadmin-plugins.github.io/capybara_active_admin)
+
 ## Installation
 
 Add this line to your application's Gemfile:
