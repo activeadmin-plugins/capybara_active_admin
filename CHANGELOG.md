@@ -5,11 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+ - `within_attribute_row` finder
+
+### Removed
+ - `find_input` finder
+ - `have_input`, `have_no_input` matchers
+ - `input_selector` selector
 
 ## [0.3.0] - 2020-04-15
 ### Added
-- implement DSL for tabs, batch actions, modal dialog, attributes table, panel, sidebar, footer
-- improve form DSL
+ - implement DSL for tabs, batch actions, modal dialog, attributes table, panel, sidebar, footer
+ - improve form DSL
 
 ## [0.2.1] - 2020-04-14
 ### Fixed

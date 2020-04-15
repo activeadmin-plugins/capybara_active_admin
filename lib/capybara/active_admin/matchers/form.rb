@@ -28,20 +28,9 @@ module Capybara
           have_selector(semantic_error_selector, options)
         end
 
-        def have_no_input(text, options = {})
-          opts = Util.options_with_text(text, options)
-          have_none_of_selectors(:css, label_selector, opts)
-        end
-
         def have_has_many_fields_for(association_name, options = {})
           selector = has_many_fields_selector(association_name)
           have_selector(selector, options)
-        end
-
-        def have_input(text, options = {})
-          selector = input_selector text, options.slice(:type, :text)
-          opts = options.except(:type, :text)
-          have_selector(selector, opts)
         end
       end
     end

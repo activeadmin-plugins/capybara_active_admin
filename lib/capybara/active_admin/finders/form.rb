@@ -22,15 +22,6 @@ module Capybara
           within(fieldset) { yield }
         end
 
-        def find_input(label, options = {})
-          label_opts = Util.options_with_text label, options.slice(:exact)
-          label_node = find(label_selector, label_opts)
-
-          input_id = label_node[:for]
-          opts = options.except(:exact)
-          find("##{input_id}", opts)
-        end
-
         def within_filters
           selector = filter_form_selector
           within(selector) { yield }

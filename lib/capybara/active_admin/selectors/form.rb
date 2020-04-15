@@ -31,20 +31,6 @@ module Capybara
           selector
         end
 
-        def input_selector(label, options)
-          text = options.delete(:text)
-          type = options.delete(:type) || :text
-
-          label_opts = options.merge(text: label)
-          label = find(label_selector, label_opts)
-
-          input_id = label[:for]
-          tag_name = type.to_sym == :select ? 'select' : 'input'
-          selector = "#{tag_name}##{input_id}"
-          selector = %(#{selector}[value="#{text}"]) unless text.nil?
-          selector
-        end
-
         def input_container_selector(label, exact: nil)
           return 'li' if label.nil?
 

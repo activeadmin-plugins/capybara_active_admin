@@ -12,8 +12,8 @@ RSpec.describe 'Users new', js: true do
     expect(page).to have_page_title('New User')
 
     within_form_for(User) do
-      expect(page).to have_input('Full name')
-      expect(page).to have_no_input('Test')
+      expect(page).to have_field('Full name')
+      expect(page).to_not have_field('Test')
       fill_in 'Full name', with: 'John Doe'
       click_submit 'Create User'
     end

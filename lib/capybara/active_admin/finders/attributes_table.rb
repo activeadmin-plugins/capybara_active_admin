@@ -11,6 +11,11 @@ module Capybara
           selector = attributes_table_selector(model_name, record_id)
           within(selector) { yield }
         end
+
+        def within_attribute_row(label)
+          selector = attributes_row_selector(label)
+          within(selector) { yield }
+        end
       end
     end
   end
