@@ -14,19 +14,19 @@ jobs:
       rvm: 2.5.7
       env: RAILS_VERSION="~> 6.0"
       before_script: bundle install
-      script: bundle exec rake test
+      script: bundle exec rake default
     - name: "Test Ruby-2.5.7 Rails-5.2"
       stage: test
       rvm: 2.5.7
       env: RAILS_VERSION="~> 5.2"
       before_script: bundle install
-      script: bundle exec rake test
+      script: bundle exec rake default
     - name: "Test Ruby-2.3.8 Rails-5.2"
       stage: test
       rvm: 2.3.8
       env: RAILS_VERSION="~> 5.2"
       before_script: bundle install
-      script: bundle exec rake test
+      script: bundle exec rake default
     - name: "Deploy documentation"
       stage: deploy
       before_script: yarn install
