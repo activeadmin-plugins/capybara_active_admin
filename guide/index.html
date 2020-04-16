@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction | Capybara Active Admin</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Capybara DSL for fast and easy testing Active Admin applications.">
+    <link rel="preload" href="/capybara_active_admin/assets/css/0.styles.bdac3ec7.css" as="style"><link rel="preload" href="/capybara_active_admin/assets/js/app.9c775045.js" as="script"><link rel="preload" href="/capybara_active_admin/assets/js/2.2e02cfe0.js" as="script"><link rel="preload" href="/capybara_active_admin/assets/js/6.641301a0.js" as="script"><link rel="prefetch" href="/capybara_active_admin/assets/js/3.beb8d627.js"><link rel="prefetch" href="/capybara_active_admin/assets/js/4.4d6e9f86.js"><link rel="prefetch" href="/capybara_active_admin/assets/js/5.a09b373e.js"><link rel="prefetch" href="/capybara_active_admin/assets/js/7.d79ae832.js">
+    <link rel="stylesheet" href="/capybara_active_admin/assets/css/0.styles.bdac3ec7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/capybara_active_admin/" class="home-link router-link-active"><!----> <span class="site-name">Capybara Active Admin</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/capybara_active_admin/guide/" class="nav-link router-link-exact-active router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/activeadmin-plugins/capybara_active_admin" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/capybara_active_admin/guide/" class="nav-link router-link-exact-active router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/activeadmin-plugins/capybara_active_admin" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="introduction"><a href="#introduction" aria-hidden="true" class="header-anchor">#</a> Introduction</h1> <Bit></Bit> <p><code>Capybara::ActiveAdmin</code> created to write tests as fast as <code>ActiveAdmin</code> resource which they are test.</p> <h2 id="getting-started"><a href="#getting-started" aria-hidden="true" class="header-anchor">#</a> Getting Started</h2> <h3 id="installation"><a href="#installation" aria-hidden="true" class="header-anchor">#</a> Installation</h3> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># Gemfile</span>
+
+gem <span class="token string">'capybara_active_admin'</span><span class="token punctuation">,</span> group<span class="token punctuation">:</span> <span class="token symbol">:test</span><span class="token punctuation">,</span> <span class="token keyword">require</span><span class="token punctuation">:</span> <span class="token keyword">false</span>
+</code></pre></div><div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># spec/rails_helper.rb</span>
+
+<span class="token comment"># after require 'rspec' or 'rspec/rails'</span>
+<span class="token keyword">require</span> <span class="token string">'capybara/active_admin/rspec'</span>
+</code></pre></div><h3 id="usage"><a href="#usage" aria-hidden="true" class="header-anchor">#</a> Usage</h3> <p>For example we have such database table</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code>create_table <span class="token symbol">:users</span> <span class="token keyword">do</span> <span class="token operator">|</span>t<span class="token operator">|</span>
+  t<span class="token punctuation">.</span>string <span class="token symbol">:full_name</span>
+  t<span class="token punctuation">.</span>timestamps
+<span class="token keyword">end</span>
+</code></pre></div><p>And such <code>ActiveRecord</code> model</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&lt;</span> <span class="token constant">ActiveRecord</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Base</span>
+  validates <span class="token symbol">:full_name</span><span class="token punctuation">,</span> presence<span class="token punctuation">:</span> <span class="token keyword">true</span>
+<span class="token keyword">end</span>
+</code></pre></div><p>And there is our <code>ActiveAdmin</code> resource</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token constant">ActiveAdmin</span><span class="token punctuation">.</span>register <span class="token constant">User</span> <span class="token keyword">do</span>
+  permit_params <span class="token symbol">:full_name</span>
+<span class="token keyword">end</span>
+</code></pre></div><p>Our test can look like below</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># spec/system/users_spec.rb</span>
+
+<span class="token constant">RSpec</span><span class="token punctuation">.</span>describe <span class="token string">'Users'</span> <span class="token keyword">do</span>
+
+  describe <span class="token string">'index page'</span> <span class="token keyword">do</span>
+    subject <span class="token keyword">do</span>
+      visit admin_users_path
+    <span class="token keyword">end</span>
+
+    it <span class="token string">'have no table'</span> <span class="token keyword">do</span>
+      subject
+
+      <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_text</span><span class="token punctuation">(</span><span class="token string">'There are no Users yet.'</span><span class="token punctuation">)</span>
+      <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_action_item</span><span class="token punctuation">(</span><span class="token string">'New User'</span><span class="token punctuation">)</span>
+      <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to_not <span class="token function">have_action_item</span><span class="token punctuation">(</span><span class="token string">'Edit User'</span><span class="token punctuation">)</span>
+      <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to_not have_table
+    <span class="token keyword">end</span>
+
+    context <span class="token string">'with users'</span> <span class="token keyword">do</span>
+      let<span class="token operator">!</span><span class="token punctuation">(</span><span class="token symbol">:users</span><span class="token punctuation">)</span> <span class="token keyword">do</span>
+        <span class="token punctuation">[</span>
+          <span class="token constant">User</span><span class="token punctuation">.</span>create<span class="token operator">!</span><span class="token punctuation">(</span>full_name<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token constant">User</span><span class="token punctuation">.</span>create<span class="token operator">!</span><span class="token punctuation">(</span>full_name<span class="token punctuation">:</span> <span class="token string">'Jane Air'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span>
+      <span class="token keyword">end</span>
+
+      it <span class="token string">'have correct table rows'</span> <span class="token keyword">do</span>
+        subject
+
+        <span class="token comment"># you can check that table is visible on page</span>
+        <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to have_table
+
+        <span class="token comment"># checkout data within table,</span>
+        <span class="token comment"># same as `within(table_selector) do`</span>
+        within_table_for <span class="token keyword">do</span>
+          <span class="token comment"># check how many rows in table (tr)</span>
+          <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_row</span><span class="token punctuation">(</span>count<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">)</span>
+          <span class="token comment"># or cells (td)</span>
+          <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>count<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">)</span>
+          <span class="token comment"># or check cell of specific column contain specific value,</span>
+          <span class="token comment"># accepts same options as `have_selector`, such as :text, :exact_text, :count, etc.</span>
+          <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">,</span> column<span class="token punctuation">:</span> <span class="token string">'Full Name'</span><span class="token punctuation">)</span>
+
+          <span class="token comment"># we can check data inside specific row by record id,</span>
+          <span class="token comment"># or we can find it by index in table `within_table_row(index: 0) do`.</span>
+          <span class="token function">within_table_row</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> users<span class="token punctuation">.</span>first<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">do</span>
+            <span class="token comment"># default columns for users table are id, full_name, created_at, updated_at, actions.</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>count<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">)</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">)</span>
+            <span class="token comment"># or you can write</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">,</span> column<span class="token punctuation">:</span> <span class="token string">'Full Name'</span><span class="token punctuation">)</span>
+            <span class="token comment"># negate matcher</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to_not <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">,</span> column<span class="token punctuation">:</span> <span class="token string">'Id'</span><span class="token punctuation">)</span>
+          <span class="token keyword">end</span>
+
+          <span class="token function">within_table_row</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> users<span class="token punctuation">.</span>second<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">do</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> users<span class="token punctuation">.</span>second<span class="token punctuation">.</span>id<span class="token punctuation">,</span> column<span class="token punctuation">:</span> <span class="token string">'Id'</span><span class="token punctuation">)</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token string">'Jane Air'</span><span class="token punctuation">,</span> column<span class="token punctuation">:</span> <span class="token string">'Full Name'</span><span class="token punctuation">)</span>
+            <span class="token function">expect</span><span class="token punctuation">(</span>page<span class="token punctuation">)</span><span class="token punctuation">.</span>to_not <span class="token function">have_table_cell</span><span class="token punctuation">(</span>text<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">)</span>
+          <span class="token keyword">end</span>
+        <span class="token keyword">end</span>
+      <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/capybara_active_admin/assets/js/app.9c775045.js" defer></script><script src="/capybara_active_admin/assets/js/2.2e02cfe0.js" defer></script><script src="/capybara_active_admin/assets/js/6.641301a0.js" defer></script>
+  </body>
+</html>
