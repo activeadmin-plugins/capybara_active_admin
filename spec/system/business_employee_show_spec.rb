@@ -28,7 +28,7 @@ RSpec.describe 'Business Employees show', js: true do
     expect(page).to have_attributes_table(model: Billing::Employee)
     expect(page).to have_attributes_table(model: Billing::Employee, id: record.id)
 
-    within_attributes_table_for(Billing::Employee, record.id) do
+    within_attributes_table_for(model: Billing::Employee, id: record.id) do
       expect(page).to have_attribute_row('Full name')
       expect(page).to have_attribute_row('Full name', text: record.full_name)
       expect(page).to have_attribute_row('Salary', exact_text: '$100.00')
@@ -36,7 +36,7 @@ RSpec.describe 'Business Employees show', js: true do
 
     switch_tab('Duties')
 
-    within_table_for(Billing::Duty) do
+    within_table_for do
       expect(page).to have_table_row(count: 2)
       expect(page).to have_table_row(id: record.duties.first.id)
       expect(page).to have_table_row(id: record.duties.second.id)

@@ -3,6 +3,7 @@
 module Capybara
   module ActiveAdmin
     module Actions
+      # Actions for common Active Admin components.
       module Layout
         def click_action_item(title, options = {})
           within(action_items_container_selector) do

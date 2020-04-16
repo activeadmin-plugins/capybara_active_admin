@@ -29,7 +29,7 @@ RSpec.describe 'Business Employees index', js: true do
 
     expect(page).to have_table
     expect(page).to have_table(resource_name: 'Business Employees')
-    within_table_for(Billing::Employee) do
+    within_table_for do
       expect(page).to have_table_row(count: 2)
       # 2x id, full_name, salary, common_duties, extra_duties, created_at, updated_at, actions
       expect(page).to have_table_cell(count: 16)

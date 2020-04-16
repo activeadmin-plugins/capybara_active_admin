@@ -3,15 +3,21 @@
 module Capybara
   module ActiveAdmin
     module Finders
+      # Finder methods for ActiveAdmin attributes_table_for can be found here.
+      # @see Capybara::ActiveAdmin::Finders base finders module.
       module AttributesTable
-        # @param model_name [Class<Object>, nil] model name or class.
-        # @param record_id [String, Numeric, nil]
-        # @yield within attributes table
-        def within_attributes_table_for(model_name, record_id = nil)
-          selector = attributes_table_selector(model_name, record_id)
+        # Calls block within attributes table.
+        # @param model [Class<Object>, nil] model name or class.
+        # @param id [String, Numeric, nil] record ID.
+        # @yield within attributes table.
+        def within_attributes_table_for(model: nil, id: nil)
+          selector = attributes_table_selector(model: model, id: id)
           within(selector) { yield }
         end
 
+        # Calls block within attributes table row.
+        # @param label [String] row label.
+        # @yield within attributes table.
         def within_attribute_row(label)
           selector = attributes_row_selector(label)
           within(selector) { yield }

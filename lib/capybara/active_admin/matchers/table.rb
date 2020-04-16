@@ -29,7 +29,7 @@ module Capybara
         #
         def have_table_row(options = {})
           row_id = options.delete(:id)
-          selector = table_row_selector(current_table_model_name, row_id)
+          selector = table_row_selector(row_id)
           have_selector(selector, options)
         end
 

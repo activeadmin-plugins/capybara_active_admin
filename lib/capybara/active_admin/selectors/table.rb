@@ -3,26 +3,33 @@
 module Capybara
   module ActiveAdmin
     module Selectors
+      # Selectors for *table_for*, it's rows and cells.
       module Table
-        def table_selector(resource_name)
+        # @param resource_name [String, nil] active admin resource name.
+        # @return selector.
+        def table_selector(resource_name = nil)
           return 'table.index_table' if resource_name.nil?
 
           resource_name = resource_name.to_s.gsub(' ', '_').pluralize.downcase
           "table#index_table_#{resource_name}"
         end
 
-        def table_row_selector(model_name, record_id)
+        # @param record_id [String, Integer, nil] record ID.
+        # @return selector.
+        def table_row_selector(record_id = nil)
           return 'tbody > tr' if record_id.nil?
 
-          model_name = Util.parse_model_name(model_name)
-          "tbody > tr##{model_name}_#{record_id}"
+          %(tbody > tr[id$="_#{record_id}"])
         end
 
+        # @return selector.
         def table_header_selector
           'thead > tr > th.col'
         end
 
-        def table_cell_selector(column)
+        # @param column [String, nil] column name.
+        # @return selector.
+        def table_cell_selector(column = nil)
           return 'td.col' if column.nil?
 
           column = column.to_s.gsub(' ', '_').downcase

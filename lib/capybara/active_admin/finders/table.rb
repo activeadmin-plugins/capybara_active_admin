@@ -3,26 +3,14 @@
 module Capybara
   module ActiveAdmin
     module Finders
+      # Finders for *table_for*, it's rows and cells.
       module Table
-        def current_table_model_name
-          @__current_table_model_name
-        end
-
-        # @param model_name [Class<#model_name>, String] records class or model name to match rows.
         # @param resource_name [String, nil] resource name of index page.
         # @yield within table
-        def within_table_for(model_name, resource_name = nil)
+        def within_table_for(resource_name = nil)
           selector = table_selector(resource_name)
 
-          within(selector) do
-            old = @__current_table_model_name
-            @__current_table_model_name = model_name
-            begin
-              yield
-            ensure
-              @__current_table_model_name = old
-            end
-          end
+          within(selector) { yield }
         end
 
         # id [String, Integer, nil] record ID.
@@ -38,11 +26,11 @@ module Capybara
           raise ArgumentError, 'must provide :id or :index' if id.nil? && index.nil?
 
           if id
-            selector = table_row_selector(current_table_model_name, id)
+            selector = table_row_selector(id)
             return find(selector)
           end
 
-          selector = table_row_selector(nil, nil)
+          selector = table_row_selector(nil)
           find_all(selector, minimum: index + 1)[index]
         end
 

@@ -3,6 +3,7 @@
 module Capybara
   module ActiveAdmin
     module Finders
+      # Finders for common Active Admin components.
       module Layout
         def find_footer(options = {})
           selector = footer_selector

@@ -3,6 +3,7 @@
 module Capybara
   module ActiveAdmin
     module Matchers
+      # Matchers for common Active Admin components.
       module Layout
         def have_action_item(text, options = {})
           opts = Util.options_with_text(text, options)
