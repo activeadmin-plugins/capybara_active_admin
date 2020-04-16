@@ -5,6 +5,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/' },
+      { text: 'API Reference', link: '/api/', target: '_blank' },
       { text: 'GitHub', link: 'https://github.com/activeadmin-plugins/capybara_active_admin' }
     ]
   }

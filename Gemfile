@@ -14,6 +14,7 @@ gem 'rake', '~> 12.0'
 gem 'rspec-rails', '~> 4.0'
 gem 'rubocop', '~> 0.81.0', require: false
 gem 'system_test_html_screenshots', require: false
+gem 'yard', require: false
 
 gem 'activeadmin', ENV.fetch('ACTIVE_ADMIN_VERSION', '~> 2.0'), require: false
 gem 'rails', ENV.fetch('RAILS_VERSION', '6.0.0')

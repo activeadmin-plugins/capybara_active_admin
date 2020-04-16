@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - vendor/**/*
     - tmp/**/*
+    - docs/**/*
 
 # Capybara/RSpec uses have_ had_ as name convention for matchers.
 Naming/PredicateName:

@@ -29,9 +29,10 @@ jobs:
       script: bundle exec rake default
     - name: "Deploy documentation"
       stage: deploy
-      install: skip
       before_script: yarn install
-      script: yarn docs:build
+      script:
+        - bundle exec rake yard
+        - yarn docs:build
       deploy:
         provider: pages
         edge: true

@@ -16,4 +16,5 @@ Gemfile.lock
 
 # docs
 /docs/.vuepress/dist/
+/docs/.vuepress/public/api/
 /node_modules/
