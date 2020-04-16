@@ -1,6 +1,6 @@
 # Capybara Active Admin
 
-[![Build Status](https://travis-ci.com/activeadmin-plugins/capybara_active_admin.svg?branch=master)](https://travis-ci.com/activeadmin-plugins/capybara_active_admin)
+[![Build Status](https://travis-ci.com/activeadmin-plugins/capybara_active_admin.svg?branch=master)](https://travis-ci.com/activeadmin-plugins/capybara_active_admin) [![Gem Version](https://badge.fury.io/rb/capybara_active_admin.svg)](https://badge.fury.io/rb/capybara_active_admin) [![Downloads](https://img.shields.io/gem/dt/capybara_active_admin)](https://rubygems.org/gems/capybara_active_admin) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Capybara DSL for fast and easy testing Active Admin applications.
 
