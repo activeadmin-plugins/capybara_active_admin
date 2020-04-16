@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Capybara::ActiveAdmin::TestHelpers
+  
+    &mdash; Capybara Active Admin API Reference
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Capybara::ActiveAdmin::TestHelpers";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Capybara.html" title="Capybara (module)">Capybara</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../ActiveAdmin.html" title="Capybara::ActiveAdmin (module)">ActiveAdmin</a></span></span>
+     &raquo; 
+    <span class="title">TestHelpers</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Capybara::ActiveAdmin::TestHelpers
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="Actions.html" title="Capybara::ActiveAdmin::Actions (module)">Actions</a></span>, <span class='object_link'><a href="Finders.html" title="Capybara::ActiveAdmin::Finders (module)">Finders</a></span>, <span class='object_link'><a href="Matchers.html" title="Capybara::ActiveAdmin::Matchers (module)">Matchers</a></span>, <span class='object_link'><a href="Selectors.html" title="Capybara::ActiveAdmin::Selectors (module)">Selectors</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/capybara/active_admin/test_helpers.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2>Method Summary</h2>
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Actions/Form.html" title="Capybara::ActiveAdmin::Actions::Form (module)">Actions::Form</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Actions/Form.html#click_submit-instance_method" title="Capybara::ActiveAdmin::Actions::Form#click_submit (method)">#click_submit</a></span>, <span class='object_link'><a href="Actions/Form.html#fill_in_file-instance_method" title="Capybara::ActiveAdmin::Actions::Form#fill_in_file (method)">#fill_in_file</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Actions/Layout.html" title="Capybara::ActiveAdmin::Actions::Layout (module)">Actions::Layout</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Actions/Layout.html#click_action_item-instance_method" title="Capybara::ActiveAdmin::Actions::Layout#click_action_item (method)">#click_action_item</a></span>, <span class='object_link'><a href="Actions/Layout.html#click_batch_action-instance_method" title="Capybara::ActiveAdmin::Actions::Layout#click_batch_action (method)">#click_batch_action</a></span>, <span class='object_link'><a href="Actions/Layout.html#confirm_modal_dialog-instance_method" title="Capybara::ActiveAdmin::Actions::Layout#confirm_modal_dialog (method)">#confirm_modal_dialog</a></span>, <span class='object_link'><a href="Actions/Layout.html#switch_tab-instance_method" title="Capybara::ActiveAdmin::Actions::Layout#switch_tab (method)">#switch_tab</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Matchers/Form.html" title="Capybara::ActiveAdmin::Matchers::Form (module)">Matchers::Form</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Matchers/Form.html#have_form_error-instance_method" title="Capybara::ActiveAdmin::Matchers::Form#have_form_error (method)">#have_form_error</a></span>, <span class='object_link'><a href="Matchers/Form.html#have_has_many_fields_for-instance_method" title="Capybara::ActiveAdmin::Matchers::Form#have_has_many_fields_for (method)">#have_has_many_fields_for</a></span>, <span class='object_link'><a href="Matchers/Form.html#have_no_form_errors-instance_method" title="Capybara::ActiveAdmin::Matchers::Form#have_no_form_errors (method)">#have_no_form_errors</a></span>, <span class='object_link'><a href="Matchers/Form.html#have_semantic_error-instance_method" title="Capybara::ActiveAdmin::Matchers::Form#have_semantic_error (method)">#have_semantic_error</a></span>, <span class='object_link'><a href="Matchers/Form.html#have_semantic_errors-instance_method" title="Capybara::ActiveAdmin::Matchers::Form#have_semantic_errors (method)">#have_semantic_errors</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Matchers/AttributesTable.html" title="Capybara::ActiveAdmin::Matchers::AttributesTable (module)">Matchers::AttributesTable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Matchers/AttributesTable.html#have_attribute_row-instance_method" title="Capybara::ActiveAdmin::Matchers::AttributesTable#have_attribute_row (method)">#have_attribute_row</a></span>, <span class='object_link'><a href="Matchers/AttributesTable.html#have_attributes_table-instance_method" title="Capybara::ActiveAdmin::Matchers::AttributesTable#have_attributes_table (method)">#have_attributes_table</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Matchers/Table.html" title="Capybara::ActiveAdmin::Matchers::Table (module)">Matchers::Table</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Matchers/Table.html#have_table-instance_method" title="Capybara::ActiveAdmin::Matchers::Table#have_table (method)">#have_table</a></span>, <span class='object_link'><a href="Matchers/Table.html#have_table_cell-instance_method" title="Capybara::ActiveAdmin::Matchers::Table#have_table_cell (method)">#have_table_cell</a></span>, <span class='object_link'><a href="Matchers/Table.html#have_table_row-instance_method" title="Capybara::ActiveAdmin::Matchers::Table#have_table_row (method)">#have_table_row</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Matchers/Layout.html" title="Capybara::ActiveAdmin::Matchers::Layout (module)">Matchers::Layout</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Matchers/Layout.html#have_action_item-instance_method" title="Capybara::ActiveAdmin::Matchers::Layout#have_action_item (method)">#have_action_item</a></span>, <span class='object_link'><a href="Matchers/Layout.html#have_flash_message-instance_method" title="Capybara::ActiveAdmin::Matchers::Layout#have_flash_message (method)">#have_flash_message</a></span>, <span class='object_link'><a href="Matchers/Layout.html#have_footer-instance_method" title="Capybara::ActiveAdmin::Matchers::Layout#have_footer (method)">#have_footer</a></span>, <span class='object_link'><a href="Matchers/Layout.html#have_page_title-instance_method" title="Capybara::ActiveAdmin::Matchers::Layout#have_page_title (method)">#have_page_title</a></span>, <span class='object_link'><a href="Matchers/Layout.html#have_panel-instance_method" title="Capybara::ActiveAdmin::Matchers::Layout#have_panel (method)">#have_panel</a></span>, <span class='object_link'><a href="Matchers/Layout.html#have_sidebar-instance_method" title="Capybara::ActiveAdmin::Matchers::Layout#have_sidebar (method)">#have_sidebar</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Finders/Form.html" title="Capybara::ActiveAdmin::Finders::Form (module)">Finders::Form</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Finders/Form.html#within_filters-instance_method" title="Capybara::ActiveAdmin::Finders::Form#within_filters (method)">#within_filters</a></span>, <span class='object_link'><a href="Finders/Form.html#within_form_for-instance_method" title="Capybara::ActiveAdmin::Finders::Form#within_form_for (method)">#within_form_for</a></span>, <span class='object_link'><a href="Finders/Form.html#within_form_has_many-instance_method" title="Capybara::ActiveAdmin::Finders::Form#within_form_has_many (method)">#within_form_has_many</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Finders/AttributesTable.html" title="Capybara::ActiveAdmin::Finders::AttributesTable (module)">Finders::AttributesTable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Finders/AttributesTable.html#within_attribute_row-instance_method" title="Capybara::ActiveAdmin::Finders::AttributesTable#within_attribute_row (method)">#within_attribute_row</a></span>, <span class='object_link'><a href="Finders/AttributesTable.html#within_attributes_table_for-instance_method" title="Capybara::ActiveAdmin::Finders::AttributesTable#within_attributes_table_for (method)">#within_attributes_table_for</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Finders/Table.html" title="Capybara::ActiveAdmin::Finders::Table (module)">Finders::Table</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Finders/Table.html#find_table_cell-instance_method" title="Capybara::ActiveAdmin::Finders::Table#find_table_cell (method)">#find_table_cell</a></span>, <span class='object_link'><a href="Finders/Table.html#find_table_row-instance_method" title="Capybara::ActiveAdmin::Finders::Table#find_table_row (method)">#find_table_row</a></span>, <span class='object_link'><a href="Finders/Table.html#within_table_cell-instance_method" title="Capybara::ActiveAdmin::Finders::Table#within_table_cell (method)">#within_table_cell</a></span>, <span class='object_link'><a href="Finders/Table.html#within_table_for-instance_method" title="Capybara::ActiveAdmin::Finders::Table#within_table_for (method)">#within_table_for</a></span>, <span class='object_link'><a href="Finders/Table.html#within_table_row-instance_method" title="Capybara::ActiveAdmin::Finders::Table#within_table_row (method)">#within_table_row</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Finders/Layout.html" title="Capybara::ActiveAdmin::Finders::Layout (module)">Finders::Layout</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Finders/Layout.html#find_footer-instance_method" title="Capybara::ActiveAdmin::Finders::Layout#find_footer (method)">#find_footer</a></span>, <span class='object_link'><a href="Finders/Layout.html#within_modal_dialog-instance_method" title="Capybara::ActiveAdmin::Finders::Layout#within_modal_dialog (method)">#within_modal_dialog</a></span>, <span class='object_link'><a href="Finders/Layout.html#within_panel-instance_method" title="Capybara::ActiveAdmin::Finders::Layout#within_panel (method)">#within_panel</a></span>, <span class='object_link'><a href="Finders/Layout.html#within_sidebar-instance_method" title="Capybara::ActiveAdmin::Finders::Layout#within_sidebar (method)">#within_sidebar</a></span>, <span class='object_link'><a href="Finders/Layout.html#within_tab_body-instance_method" title="Capybara::ActiveAdmin::Finders::Layout#within_tab_body (method)">#within_tab_body</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Selectors/Form.html" title="Capybara::ActiveAdmin::Selectors::Form (module)">Selectors::Form</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Selectors/Form.html#filter_form_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#filter_form_selector (method)">#filter_form_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#form_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#form_selector (method)">#form_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#form_submit_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#form_submit_selector (method)">#form_submit_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#has_many_fields_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#has_many_fields_selector (method)">#has_many_fields_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#inline_error_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#inline_error_selector (method)">#inline_error_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#input_container_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#input_container_selector (method)">#input_container_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#label_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#label_selector (method)">#label_selector</a></span>, <span class='object_link'><a href="Selectors/Form.html#semantic_error_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Form#semantic_error_selector (method)">#semantic_error_selector</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Selectors/AttributesTable.html" title="Capybara::ActiveAdmin::Selectors::AttributesTable (module)">Selectors::AttributesTable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Selectors/AttributesTable.html#attributes_row_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::AttributesTable#attributes_row_selector (method)">#attributes_row_selector</a></span>, <span class='object_link'><a href="Selectors/AttributesTable.html#attributes_table_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::AttributesTable#attributes_table_selector (method)">#attributes_table_selector</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Selectors/Table.html" title="Capybara::ActiveAdmin::Selectors::Table (module)">Selectors::Table</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Selectors/Table.html#table_cell_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Table#table_cell_selector (method)">#table_cell_selector</a></span>, <span class='object_link'><a href="Selectors/Table.html#table_header_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Table#table_header_selector (method)">#table_header_selector</a></span>, <span class='object_link'><a href="Selectors/Table.html#table_row_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Table#table_row_selector (method)">#table_row_selector</a></span>, <span class='object_link'><a href="Selectors/Table.html#table_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Table#table_selector (method)">#table_selector</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Selectors/Layout.html" title="Capybara::ActiveAdmin::Selectors::Layout (module)">Selectors::Layout</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Selectors/Layout.html#action_item_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#action_item_selector (method)">#action_item_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#action_items_container_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#action_items_container_selector (method)">#action_items_container_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#batch_action_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#batch_action_selector (method)">#batch_action_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#batch_actions_button_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#batch_actions_button_selector (method)">#batch_actions_button_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#dropdown_list_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#dropdown_list_selector (method)">#dropdown_list_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#flash_message_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#flash_message_selector (method)">#flash_message_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#footer_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#footer_selector (method)">#footer_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#modal_dialog_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#modal_dialog_selector (method)">#modal_dialog_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#page_title_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#page_title_selector (method)">#page_title_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#panel_content_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#panel_content_selector (method)">#panel_content_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#panel_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#panel_selector (method)">#panel_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#panel_title_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#panel_title_selector (method)">#panel_title_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#sidebar_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#sidebar_selector (method)">#sidebar_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#tab_content_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#tab_content_selector (method)">#tab_content_selector</a></span>, <span class='object_link'><a href="Selectors/Layout.html#tab_header_link_selector-instance_method" title="Capybara::ActiveAdmin::Selectors::Layout#tab_header_link_selector (method)">#tab_header_link_selector</a></span></p>
+
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Apr 16 12:11:25 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.5.3).
+</div>
+
+    </div>
+  </body>
+</html>
