@@ -1,12 +1,43 @@
 ---
+# test config on https://config.travis-ci.com/explore
 language: ruby
 cache: bundler
+before_install:
+  - gem install bundler -v 2.1.4
+stages:
+  - test
+  - deploy
 jobs:
   include:
-    - rvm: 2.5.7
+    - name: "Test Ruby-2.5.7 Rails-6.0"
+      stage: test
+      rvm: 2.5.7
       env: RAILS_VERSION="~> 6.0"
-    - rvm: 2.5.7
-      env: RAILS_VERSION="~> 5.0"
-    - rvm: 2.3.8
+      before_script: bundle install
+      script: bundle exec rake test
+    - name: "Test Ruby-2.5.7 Rails-5.2"
+      stage: test
+      rvm: 2.5.7
       env: RAILS_VERSION="~> 5.2"
-before_install: gem install bundler -v 2.1.4
+      before_script: bundle install
+      script: bundle exec rake test
+    - name: "Test Ruby-2.3.8 Rails-5.2"
+      stage: test
+      rvm: 2.3.8
+      env: RAILS_VERSION="~> 5.2"
+      before_script: bundle install
+      script: bundle exec rake test
+    - name: "Deploy documentation"
+      stage: deploy
+      before_script: yarn install
+      script: yarn docs:build
+      deploy:
+        provider: pages
+        edge: true
+        verbose: true
+        cleanup: false
+        local_dir: docs/.vuepress/dist
+        token: $GITHUB_TOKEN
+        keep_history: true
+        on:
+          branch: master
