@@ -38,6 +38,12 @@ module Capybara
           opts = Util.options_with_text(title, options)
           have_selector(title_selector, opts)
         end
+
+        def have_batch_action(title, exact: true)
+          selector = "#{dropdown_list_selector} #{batch_action_selector}"
+          opts = Util.options_with_text(title, exact: exact)
+          have_selector(selector, opts)
+        end
       end
     end
   end

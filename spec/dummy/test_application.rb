@@ -122,9 +122,12 @@ ActiveAdmin.setup do |config|
   # it allover the place
   config.authentication_method = false
   config.current_user_method = false
+  config.batch_actions = true
 end
 
 Rails.application.initialize!
+# to execute prepare hooks
+ActiveSupport::Reloader.prepare!
 
 ActiveAdmin.register_page 'Dashboard' do
   menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
@@ -141,9 +144,16 @@ ActiveAdmin.register Billing::Employee, as: 'Business Employee' do
   permit_params :full_name, :salary, duties_attributes: [:id, :name, :duty_type]
   includes :duties
 
+  batch_action :update_salary, form: -> { { salary: :text } } do |ids, inputs|
+    batch_action_collection.where(id: ids).each { |r| r.update!(salary: inputs['salary']) }
+    flash[:notice] = 'Salary was updated successfully'
+    redirect_back(fallback_location: admin_root_path)
+  end
+
   index do
     actions
     id_column
+    selectable_column
     column :full_name
     column(:salary) { |r| number_to_currency(r.salary) }
     column(:common_duties) { |r| r.duties.select(&:common?).map(&:name).join(', ') }

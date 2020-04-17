@@ -8,8 +8,8 @@ require 'capybara/active_admin/actions/form'
 module Capybara
   module ActiveAdmin
     module Actions
-      # Actions are interactions with page that change something.
-      # Click, scroll, fill, clear, switch - all these are interactions.
+      # Actions are interactions with page that change something (click button, fill field, etc).
+      # Good method names starts with *click_*, *scroll_*, *fill_*, *clear_*, *switch_*, *open_*.
 
       include Actions::Layout
       include Actions::Table

@@ -31,28 +31,29 @@ RSpec.describe 'Users index', js: true do
     expect(page).to have_table(resource_name: 'Users')
     within_table_for(User) do
       expect(page).to have_table_row(count: 2)
-      expect(page).to have_table_cell(count: 10) # 2x id, full_name, created_at, updated_at, actions
+      # 2x6 (selectable, id, full_name, created_at, updated_at, actions)
+      expect(page).to have_table_cell(count: 12)
 
       expect(page).to have_table_cell(text: 'John Doe')
       expect(page).to have_table_cell(text: 'John Doe', column: 'Full Name')
       expect(page).to_not have_table_cell(text: 'John Doe', column: 'Id')
 
       within_table_row(id: john.id) do
-        expect(page).to have_table_cell(count: 5) # id, full_name, created_at, updated_at, actions
+        # selectable, id, full_name, created_at, updated_at, actions
+        expect(page).to have_table_cell(count: 6)
         expect(page).to have_table_cell(text: 'John Doe')
         expect(page).to have_table_cell(text: 'John Doe', column: 'Full Name')
         expect(page).to_not have_table_cell(text: 'John Doe', column: 'Id')
       end
 
       within_table_row(id: jane.id) do
-        expect(page).to have_table_cell(count: 5) # id, full_name, created_at, updated_at, actions
+        expect(page).to have_table_cell(count: 6)
         expect(page).to have_table_cell(text: jane.id, column: 'Id')
         expect(page).to have_table_cell(text: 'Jane Air', column: 'Full Name')
         expect(page).to_not have_table_cell(text: 'John Doe')
         expect(page).to_not have_table_cell(text: 'John Doe', column: 'Full Name')
       end
     end
-    # take_screenshot
   end
 
   # TODO: filters expect to have

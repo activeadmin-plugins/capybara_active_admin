@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+ - `batch_action_selector`, `click_batch_action` finds element by link text
+
+### Added
+ - `select_table_row`, `open_batch_action_menu` actions
+ - `have_batch_action` matcher
+ - tests for batch actions
 
 ## [0.3.2] - 2020-04-16
 ### Changed

@@ -31,15 +31,15 @@ RSpec.describe 'Business Employees index', js: true do
     expect(page).to have_table(resource_name: 'Business Employees')
     within_table_for do
       expect(page).to have_table_row(count: 2)
-      # 2x id, full_name, salary, common_duties, extra_duties, created_at, updated_at, actions
-      expect(page).to have_table_cell(count: 16)
+      # 2x9 (id, selectable, full_name, salary, common_duties, extra_duties, created_at, updated_at, actions)
+      expect(page).to have_table_cell(count: 18)
 
       expect(page).to have_table_cell(text: 'John Doe')
       expect(page).to have_table_cell(text: 'John Doe', column: 'Full Name')
       expect(page).to_not have_table_cell(text: 'John Doe', column: 'Id')
 
       within_table_row(id: john.id) do
-        expect(page).to have_table_cell(count: 8)
+        expect(page).to have_table_cell(count: 9)
         expect(page).to have_table_cell(text: 'John Doe')
         expect(page).to have_table_cell(text: 'John Doe', column: 'Full Name')
         expect(page).to have_table_cell(text: '$100.00', column: 'Salary')
@@ -49,7 +49,7 @@ RSpec.describe 'Business Employees index', js: true do
       end
 
       within_table_row(id: jane.id) do
-        expect(page).to have_table_cell(count: 8)
+        expect(page).to have_table_cell(count: 9)
         expect(page).to have_table_cell(text: jane.id, column: 'Id')
         expect(page).to have_table_cell(text: 'Jane Air', column: 'Full Name')
         expect(page).to have_table_cell(exact_text: '$101.00', column: 'Salary')
@@ -59,6 +59,33 @@ RSpec.describe 'Business Employees index', js: true do
         expect(page).to_not have_table_cell(text: 'John Doe', column: 'Full Name')
       end
     end
-    # take_screenshot
+  end
+
+  it 'updates salary via batch action' do
+    john = Billing::Employee.create!(full_name: 'John Doe', salary: 100)
+    jane = Billing::Employee.create!(full_name: 'Jane Air', salary: 101)
+    5.times { |i| Billing::Employee.create!(full_name: "Jack #{i}", salary: 10) }
+
+    subject
+
+    within_table_for do
+      select_table_row(id: john.id)
+      select_table_row(id: jane.id)
+    end
+
+    open_batch_action_menu
+    expect(page).to have_batch_action('Update Salary Selected', exact: true)
+    expect(page).to have_batch_action('Delete Selected', exact: true)
+
+    click_batch_action('Update Salary Selected', exact: true)
+    within_modal_dialog do
+      fill_in 'salary', with: '200.35'
+    end
+    confirm_modal_dialog
+
+    expect(page).to have_flash_message('Salary was updated successfully', exact: true)
+
+    expect(john.reload.salary).to eq 200.35
+    expect(jane.reload.salary).to eq 200.35
   end
 end

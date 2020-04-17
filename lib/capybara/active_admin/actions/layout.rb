@@ -16,12 +16,19 @@ module Capybara
           find(tab_header_link_selector, opts).click
         end
 
-        def click_batch_action(title)
-          find(batch_actions_button_selector).click
+        def click_batch_action(title, exact: true)
+          open_batch_action_menu
           within(dropdown_list_selector) do
-            selector = batch_action_selector(title)
-            find(selector).click
+            selector = batch_action_selector
+            opts = Util.options_with_text(title, exact: exact)
+            find(selector, opts).click
           end
+        end
+
+        def open_batch_action_menu
+          return if find_all(dropdown_list_selector).present?
+
+          find(batch_actions_button_selector).click
         end
 
         def confirm_modal_dialog

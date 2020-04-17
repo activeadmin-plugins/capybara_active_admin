@@ -73,8 +73,8 @@ module Capybara
         end
 
         # @return [String] selector.
-        def batch_action_selector(title)
-          "li a[data-action='#{title}']"
+        def batch_action_selector
+          'li a[data-action]'
         end
 
         # @return [String] selector.
