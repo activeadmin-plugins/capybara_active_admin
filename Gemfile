@@ -18,8 +18,14 @@ gem 'yard', require: false
 
 gem 'activeadmin', ENV.fetch('ACTIVE_ADMIN_VERSION', '~> 2.0'), require: false
 gem 'rails', ENV.fetch('RAILS_VERSION', '6.0.0')
+
 # responders 3 drops ruby 2.3 support
-gem 'responders', '~> 2.4', platforms: :ruby_23
+if RUBY_VERSION =~ /^2\.3/
+  gem 'responders', '~> 2.4'
+else
+  gem 'responders' # rubocop:disable Bundler/DuplicatedGem
+end
+
 gem 'sassc-rails', '2.1.2'
 gem 'sprockets', '3.7.2'
 gem 'sqlite3', '1.4.1'
