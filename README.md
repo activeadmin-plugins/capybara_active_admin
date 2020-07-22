@@ -24,6 +24,8 @@ Or install it yourself as:
 
     $ gem install capybara_active_admin
 
+**Note: `capybara_active_admin` should be required after `capybara`.**
+
 ## Usage
 
 `rails_helper.rb`
