@@ -35,6 +35,14 @@ module Capybara
           column = column.to_s.gsub(' ', '_').downcase
           "td.col.col-#{column}"
         end
+
+        def table_scopes_container_selector
+          '.scopes > ul.table_tools_segmented_control'
+        end
+
+        def table_scope_selector
+          'li.scope'
+        end
       end
     end
   end

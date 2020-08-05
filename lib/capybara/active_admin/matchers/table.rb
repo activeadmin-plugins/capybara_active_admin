@@ -53,6 +53,24 @@ module Capybara
 
           have_selector(selector, options)
         end
+
+        # @param options [Hash]
+        # @option count [Integer] qty of nodes
+        def have_table_scopes(options = {})
+          have_selector("#{table_scopes_container_selector} > #{table_scope_selector}", options)
+        end
+
+        # @param options [Hash]
+        # @option exact_text [String] title of scope
+        # @option counter [Integer,String,nil] counter value in brackets (nil if skipped)
+        # @option selected [Boolean] is scope active (default false)
+        def have_table_scope(options = {})
+          active = options.delete(:active)
+          selector = "#{table_scopes_container_selector} > #{table_scope_selector}"
+          selector = active ? "#{selector}.selected" : "#{selector}:not(.selected)"
+
+          have_selector(selector, options)
+        end
       end
     end
   end
