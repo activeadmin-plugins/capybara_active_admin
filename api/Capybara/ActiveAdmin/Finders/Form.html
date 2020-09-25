@@ -181,6 +181,28 @@ components.</p>
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#within_has_many-instance_method" title="#within_has_many (instance method)">#<strong>within_has_many</strong>(association_name) { ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -232,13 +254,13 @@ components.</p>
       <pre class="lines">
 
 
-26
-27
-28
-29</pre>
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/finders/form.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/finders/form.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_within_filters'>within_filters</span>
   <span class='id identifier rubyid_selector'>selector</span> <span class='op'>=</span> <span class='id identifier rubyid_filter_form_selector'>filter_form_selector</span>
@@ -426,12 +448,86 @@ components.</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="within_has_many-instance_method">
+  
+    #<strong>within_has_many</strong>(association_name) { ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>association_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>within container have_many by passed association_name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/finders/form.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_within_has_many'>within_has_many</span><span class='lparen'>(</span><span class='id identifier rubyid_association_name'>association_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_selector'>selector</span> <span class='op'>=</span> <span class='id identifier rubyid_has_many_container_selector'>has_many_container_selector</span><span class='lparen'>(</span><span class='id identifier rubyid_association_name'>association_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_within'>within</span><span class='lparen'>(</span><span class='id identifier rubyid_selector'>selector</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>yield</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Wed Sep 16 19:54:23 2020 by
+  Generated on Fri Sep 25 10:42:39 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.25 (ruby-2.5.3).
 </div>

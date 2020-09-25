@@ -190,6 +190,30 @@ components.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#has_many_container_selector-instance_method" title="#has_many_container_selector (instance method)">#<strong>has_many_container_selector</strong>(association_name)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>.has_many_container selector.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#has_many_fields_selector-instance_method" title="#has_many_fields_selector (instance method)">#<strong>has_many_fields_selector</strong>(association_name)  &#x21d2; String </a>
     
 
@@ -360,12 +384,12 @@ components.</p>
       <pre class="lines">
 
 
-59
-60
-61</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_filter_form_selector'>filter_form_selector</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.filter_form</span><span class='tstring_end'>&#39;</span></span>
@@ -528,19 +552,93 @@ components.</p>
       <pre class="lines">
 
 
-40
-41
-42
-43
-44</pre>
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_form_submit_selector'>form_submit_selector</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>input[type=&quot;submit&quot;]</span><span class='tstring_end'>)</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 
   <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>input[type=&quot;submit&quot;][value=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_text'>text</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;]</span><span class='tstring_end'>)</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_many_container_selector-instance_method">
+  
+    #<strong>has_many_container_selector</strong>(association_name)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns .has_many_container selector.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>association_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>.has_many_container selector.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_many_container_selector'>has_many_container_selector</span><span class='lparen'>(</span><span class='id identifier rubyid_association_name'>association_name</span><span class='rparen'>)</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.has_many_container.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_association_name'>association_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -764,17 +862,17 @@ components.</p>
       <pre class="lines">
 
 
-49
-50
-51
-52
-53
-54
 55
-56</pre>
+56
+57
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/capybara/active_admin/selectors/form.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_input_container_selector'>input_container_selector</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>exact:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>li</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_label'>label</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -912,7 +1010,7 @@ components.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Sep 16 19:54:23 2020 by
+  Generated on Fri Sep 25 10:42:39 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.25 (ruby-2.5.3).
 </div>
