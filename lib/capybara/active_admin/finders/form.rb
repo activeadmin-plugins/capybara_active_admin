@@ -22,6 +22,13 @@ module Capybara
           within(fieldset) { yield }
         end
 
+        # @param association_name [String]
+        # @yield within container have_many by passed association_name
+        def within_has_many(association_name)
+          selector = has_many_container_selector(association_name)
+          within(selector) { yield }
+        end
+
         # @yield within filters container.
         def within_filters
           selector = filter_form_selector

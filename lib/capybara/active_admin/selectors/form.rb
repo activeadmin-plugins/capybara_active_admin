@@ -35,6 +35,12 @@ module Capybara
           "div.has_many_container.#{association_name} > fieldset.inputs.has_many_fields"
         end
 
+        # @param association_name [String]
+        # @return [String] .has_many_container selector.
+        def has_many_container_selector(association_name)
+          ".has_many_container.#{association_name}"
+        end
+
         # @param text [String, nil] submit button text.
         # @return [String] selector.
         def form_submit_selector(text = nil)
