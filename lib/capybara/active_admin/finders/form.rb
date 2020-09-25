@@ -26,9 +26,7 @@ module Capybara
         # @yield within container have_many by passed association_name
         def within_has_many(association_name)
           selector = has_many_container_selector(association_name)
-          fieldset = find(selector)
-
-          within(fieldset) { yield }
+          within(selector) { yield }
         end
 
         # @yield within filters container.
