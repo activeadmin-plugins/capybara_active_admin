@@ -44,7 +44,7 @@ Capybara.register_driver :cuprite_headless do |app|
 end
 
 Capybara.register_driver :cuprite do |app|
-  Capybara::Cuprite::Driver.new(app, cuprite_opts.merge(headless: false))
+  Capybara::Cuprite::Driver.new(app, cuprite_opts.merge(headless: false, window_size: [1440, 900]))
 end
 
 Capybara.javascript_driver = ENV['JS_DRIVER'].presence&.to_sym || :cuprite_headless
