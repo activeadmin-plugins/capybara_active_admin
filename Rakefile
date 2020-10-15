@@ -15,4 +15,10 @@ YARD::Rake::YardocTask.new(:yard) do |task|
   ]
 end
 
+RSpec::Core::RakeTask.new(:server) do |t|
+  ENV['JS_DRIVER'] = 'cuprite'
+  t.pattern = 'spec/system/up_dummy_application.rb'
+end
+
 task default: [:rubocop, :spec]
+task s: :server
