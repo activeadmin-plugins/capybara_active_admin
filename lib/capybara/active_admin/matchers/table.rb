@@ -14,7 +14,7 @@ module Capybara
         def have_table(options = {})
           resource_name = options.delete(:resource_name)
           selector = table_selector(resource_name)
-          have_selector(selector, options)
+          have_selector(selector, **options)
         end
 
         # @param options [Hash]
@@ -30,7 +30,7 @@ module Capybara
         def have_table_row(options = {})
           row_id = options.delete(:id)
           selector = table_row_selector(row_id)
-          have_selector(selector, options)
+          have_selector(selector, **options)
         end
 
         # @param options [Hash]
@@ -51,13 +51,13 @@ module Capybara
           column = options.delete(:column)
           selector = table_cell_selector(column)
 
-          have_selector(selector, options)
+          have_selector(selector, **options)
         end
 
         # @param options [Hash]
         # @option count [Integer] qty of nodes
         def have_table_scopes(options = {})
-          have_selector("#{table_scopes_container_selector} > #{table_scope_selector}", options)
+          have_selector("#{table_scopes_container_selector} > #{table_scope_selector}", **options)
         end
 
         # @param options [Hash]
@@ -69,7 +69,7 @@ module Capybara
           selector = "#{table_scopes_container_selector} > #{table_scope_selector}"
           selector = active ? "#{selector}.selected" : "#{selector}:not(.selected)"
 
-          have_selector(selector, options)
+          have_selector(selector, **options)
         end
       end
     end

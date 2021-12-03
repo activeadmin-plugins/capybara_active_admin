@@ -7,7 +7,7 @@ module Capybara
       module Layout
         def find_footer(options = {})
           selector = footer_selector
-          have_selector(selector, options)
+          have_selector(selector, **options)
         end
 
         def within_tab_body
@@ -26,7 +26,7 @@ module Capybara
         def within_panel(title, exact: nil)
           title_selector = "#{panel_selector} > #{panel_title_selector}"
           title_opts = Util.options_with_text(title, exact: exact)
-          panel_title = find(title_selector, title_opts)
+          panel_title = find(title_selector, **title_opts)
           panel_content = panel_title.sibling(panel_content_selector)
 
           within(panel_content) { yield }

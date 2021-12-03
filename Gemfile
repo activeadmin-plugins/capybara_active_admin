@@ -13,7 +13,6 @@ gem 'puma'
 gem 'rake', '~> 12.0'
 gem 'rspec-rails', '~> 4.0'
 gem 'rubocop', '~> 0.81.0', require: false
-gem 'system_test_html_screenshots', require: false
 gem 'yard', require: false
 
 gem 'activeadmin', ENV.fetch('ACTIVE_ADMIN_VERSION', '~> 2.0'), require: false
@@ -28,4 +27,4 @@ end
 
 gem 'sassc-rails', '2.1.2'
 gem 'sprockets', '3.7.2'
-gem 'sqlite3', '1.4.1'
+gem 'sqlite3'

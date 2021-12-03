@@ -56,7 +56,7 @@ module Capybara
           return 'li' if label.nil?
 
           label_opts = Util.options_with_text(label, exact: exact)
-          label_node = find(label_selector, label_opts)
+          label_node = find(label_selector, **label_opts)
           li_id = label_node.ancestor('li')[:id]
           "li##{li_id}"
         end

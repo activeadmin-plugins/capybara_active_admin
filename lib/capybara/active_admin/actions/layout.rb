@@ -7,13 +7,13 @@ module Capybara
       module Layout
         def click_action_item(title, options = {})
           within(action_items_container_selector) do
-            click_link(title, options)
+            click_link(title, **options)
           end
         end
 
         def switch_tab(tab_name, options = {})
           opts = Util.options_with_text(tab_name, options)
-          find(tab_header_link_selector, opts).click
+          find(tab_header_link_selector, **opts).click
         end
 
         def click_batch_action(title, exact: true)
@@ -21,7 +21,7 @@ module Capybara
           within(dropdown_list_selector) do
             selector = batch_action_selector
             opts = Util.options_with_text(title, exact: exact)
-            find(selector, opts).click
+            find(selector, **opts).click
           end
         end
 
