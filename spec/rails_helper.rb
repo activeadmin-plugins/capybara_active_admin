@@ -9,7 +9,6 @@ require_relative 'dummy/test_application'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'system_test_html_screenshots'
 require 'capybara/cuprite'
 
 # gem files
@@ -53,7 +52,7 @@ Capybara.javascript_driver = ENV['JS_DRIVER'].presence&.to_sym || :cuprite_headl
 Capybara.register_server :puma do |app, port, host, options = {}|
   require 'rack/handler/puma'
   puma_opts = { Host: host, Port: port, Threads: '0:1', workers: 0, daemon: false }
-  Rack::Handler::Puma.run(app, puma_opts.merge(options))
+  Rack::Handler::Puma.run(app, **puma_opts.merge(options))
 end
 
 Capybara.server = :puma

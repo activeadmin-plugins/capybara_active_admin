@@ -6,7 +6,7 @@ module Capybara
       module Form
         def click_submit(value, options = {})
           selector = form_submit_selector(value)
-          find(selector, options).click
+          find(selector, **options).click
         end
 
         def fill_in_file(label, options = {})
