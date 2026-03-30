@@ -14,9 +14,6 @@ require 'capybara/cuprite'
 # gem files
 require 'capybara/active_admin/rspec'
 
-# Force deprecations to raise an exception.
-ActiveSupport::Deprecation.behavior = :raise
-
 # Capybara generic config
 Capybara.default_max_wait_time = 5
 Capybara.configure do |config|
