@@ -60,16 +60,34 @@ module Capybara
           have_selector("#{table_scopes_container_selector} > #{table_scope_selector}", **options)
         end
 
-        # @param options [Hash]
-        # @option exact_text [String] title of scope
-        # @option counter [Integer,String,nil] counter value in brackets (nil if skipped)
-        # @option selected [Boolean] is scope active (default false)
-        def have_table_scope(options = {})
-          active = options.delete(:active)
+        # @param title [String, nil] exact title of scope to match.
+        # @param selected [Boolean] whether to match selected (active) scope only (default false).
+        # @param options [Hash] additional options passed to have_selector.
+        def have_table_scope(title = nil, selected: false, **options)
           selector = "#{table_scopes_container_selector} > #{table_scope_selector}"
-          selector = active ? "#{selector}.selected" : "#{selector}:not(.selected)"
+          if title.nil?
+            selector = selected ? "#{selector}.selected" : "#{selector}:not(.selected)"
+            have_selector(selector, **options)
+          else
+            selector = selected ? "#{selector}.selected" : selector
+            have_selector(selector, exact_text: title.to_s, **options)
+          end
+        end
 
-          have_selector(selector, **options)
+        # @param text [String] column header text.
+        # @param options [Hash]
+        # @option column [String, nil] column name override (defaults to text).
+        # @option sortable [Boolean] whether the column is sortable.
+        # @option sort_direction [String, nil] sort direction ('asc' or 'desc').
+        # @example
+        #   expect(page).to have_table_header('Full Name')
+        #   expect(page).to have_table_header('Full Name', sortable: true)
+        #   expect(page).to have_table_header('Full Name', sort_direction: :asc)
+        #
+        def have_table_header(text, options = {})
+          selector = table_header_selector(text, options)
+          opts = options.except(:column, :sortable, :sort_direction).merge(exact_text: text)
+          have_selector(selector, **opts)
         end
       end
     end

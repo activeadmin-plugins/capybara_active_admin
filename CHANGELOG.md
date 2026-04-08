@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+ - `have_fields_date_range` matcher for date range filter fields
+ - `within_table_footer` finder for table footer row
+ - `click_table_scope` action for clicking table scope links
+ - `table_header_selector` selector now accepts text and options (sortable, sort_direction, column)
+ - `have_table_header` matcher for table header columns
+ - `find_table_header` finder for table header columns
+ - `click_table_header` action for clicking sortable table headers
+ - `find_action_item` finder for action item elements
+ - `have_action_item_link` matcher for action item links (with optional href)
+ - `within_action_item_dropdown` finder for action item dropdown menu
+ - `have_status_tag` matcher for status tag elements
+
+### Changed
+ - `within_sidebar` now scopes within the sidebar section directly using `ancestor`
+ - `have_table_scope` now accepts an optional title as first positional argument and `selected:` keyword arg
+
 ## [0.3.3] - 2020-04-17
 ### Changed
  - `batch_action_selector`, `click_batch_action` finds element by link text

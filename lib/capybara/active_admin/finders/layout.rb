@@ -16,11 +16,9 @@ module Capybara
         end
 
         def within_sidebar(title, exact: nil)
-          selector = sidebar_selector
-
-          within(selector) do
-            within_panel(title, exact: exact) { yield }
-          end
+          opts = Util.options_with_text(title, exact: exact)
+          sidebar = page.find("#{sidebar_selector} .sidebar_section #{panel_title_selector}", **opts).ancestor('.sidebar_section')
+          within(sidebar) { yield }
         end
 
         def within_panel(title, exact: nil)
@@ -34,6 +32,19 @@ module Capybara
 
         def within_modal_dialog
           within(modal_dialog_selector) { yield }
+        end
+
+        # @param title [String] action item link text.
+        # @param exact [Boolean] whether to match the title exactly (default true).
+        # @return [Capybara::Node::Element] the found action item element.
+        def find_action_item(title, exact: true)
+          opts = exact ? { exact_text: title } : { text: title }
+          page.find(action_item_selector, **opts)
+        end
+
+        # @yield within action item dropdown menu list.
+        def within_action_item_dropdown
+          within("#{action_item_selector} .dropdown_menu_list_wrapper") { yield }
         end
       end
     end
