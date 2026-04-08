@@ -11,5 +11,6 @@ group :test do
   gem 'cuprite'
   gem 'puma'
   gem 'rspec-rails', '~> 6.0'
+  gem 'simplecov', require: false
   gem 'sqlite3', '~> 2.0'
 end
