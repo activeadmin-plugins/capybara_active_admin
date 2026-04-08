@@ -33,6 +33,25 @@ module Capybara
           have_selector(selector, **options)
         end
 
+        # @param label [String] label text of the date range filter.
+        # @param options [Hash]
+        # @option from [String, nil] expected value of the "from" field.
+        # @option to [String, nil] expected value of the "to" field.
+        # @option exact [Boolean, nil] whether to match field values exactly.
+        # @example
+        #   expect(page).to have_fields_date_range('Created At', from: '2020-01-01', to: '2020-12-31')
+        #
+        def have_fields_date_range(label, options = {})
+          exact = options[:exact]
+          satisfy do |actual|
+            expect(actual).to have_selector('div.filter_date_range label', text: label)
+            container = actual.find('div.filter_date_range label', text: label).ancestor('div.filter_date_range')
+            base_name = container[:id].gsub(/_input\z/, '')
+            expect(container).to have_field("#{base_name}_gteq_datetime", with: options[:from].to_s, exact: exact)
+            expect(container).to have_field("#{base_name}_lteq_datetime", with: options[:to].to_s, exact: exact)
+          end
+        end
+
         # @param text [String] button title
         # @param options [Hash]
         # @option selector [String, nil] optional selector to append

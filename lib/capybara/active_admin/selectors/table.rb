@@ -22,9 +22,20 @@ module Capybara
           %(tbody > tr[id$="_#{record_id}"])
         end
 
+        # @param text [String] column header text.
+        # @param options [Hash]
+        # @option column [String, nil] column name override (defaults to text).
+        # @option sortable [Boolean] whether column is sortable.
+        # @option sort_direction [String, nil] sort direction ('asc' or 'desc').
         # @return selector.
-        def table_header_selector
-          'thead > tr > th.col'
+        def table_header_selector(text = nil, options = {})
+          return 'thead > tr > th.col' if text.nil?
+
+          column = (options[:column] || text).to_s.tr(' ', '_').downcase
+          selector = "th.col.col-#{column}"
+          selector += '.sortable' if options[:sortable]
+          selector += ".sorted-#{options[:sort_direction].to_s.downcase}" if options[:sort_direction].present?
+          "thead > tr > #{selector}"
         end
 
         # @param column [String, nil] column name.
