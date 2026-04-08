@@ -1,6 +1,10 @@
 # Capybara Active Admin
 
-[![Build Status](https://travis-ci.com/activeadmin-plugins/capybara_active_admin.svg?branch=master)](https://travis-ci.com/activeadmin-plugins/capybara_active_admin) [![Gem Version](https://badge.fury.io/rb/capybara_active_admin.svg)](https://badge.fury.io/rb/capybara_active_admin) [![Downloads](https://img.shields.io/gem/dt/capybara_active_admin)](https://rubygems.org/gems/capybara_active_admin) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/activeadmin-plugins/capybara_active_admin/actions/workflows/ci.yml/badge.svg)](https://github.com/activeadmin-plugins/capybara_active_admin/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/endpoint?url=https://activeadmin-plugins.github.io/capybara_active_admin/badge.json)](https://activeadmin-plugins.github.io/capybara_active_admin/)
+[![Gem Version](https://badge.fury.io/rb/capybara_active_admin.svg)](https://badge.fury.io/rb/capybara_active_admin)
+[![Downloads](https://img.shields.io/gem/dt/capybara_active_admin)](https://rubygems.org/gems/capybara_active_admin)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Capybara DSL for fast and easy testing Active Admin applications.
 

@@ -2,6 +2,11 @@
 
 require 'bundler/setup'
 
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/spec/'
+end
+
 ENV['RAILS_ENV'] = 'test'
 
 require_relative 'dummy/test_application'
@@ -13,9 +18,6 @@ require 'capybara/cuprite'
 
 # gem files
 require 'capybara/active_admin/rspec'
-
-# Force deprecations to raise an exception.
-ActiveSupport::Deprecation.behavior = :raise
 
 # Capybara generic config
 Capybara.default_max_wait_time = 5

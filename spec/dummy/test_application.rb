@@ -48,8 +48,7 @@ require 'active_admin'
 class TestApplication < Rails::Application
   config.root = __dir__
   config.session_store :cookie_store, key: 'cookie_store_key'
-  secrets.secret_token = 'secret_token'
-  secrets.secret_key_base = 'secret_key_base'
+  config.secret_key_base = 'secret_key_base_for_testing_only'
 
   config.eager_load = false
   config.logger = ActiveRecord::Base.logger
@@ -57,11 +56,12 @@ class TestApplication < Rails::Application
   config.hosts = %w[127.0.0.1]
 
   # Configure sprockets assets
-  config.assets.paths = [File.join(config.root, 'assets')]
+  config.assets.paths = [File.join(config.root, 'app', 'assets', 'stylesheets'), File.join(config.root, 'app', 'assets', 'javascripts')]
   config.assets.unknown_asset_fallback = false
   config.assets.digest = false
   config.assets.debug = false
   config.assets.compile = true
+
   # config.public_file_server.enabled
 end
 
@@ -91,12 +91,16 @@ class ApplicationController < ActionController::Base
     return if error.cause.nil? || error.cause == error || causes.include?(error.cause)
 
     causes.push(error)
-    log_error(error, causes)
+    log_error(error.cause, causes: causes)
   end
 end
 
 class User < ActiveRecord::Base
   validates :full_name, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id full_name created_at updated_at]
+  end
 end
 
 module Billing
@@ -105,6 +109,14 @@ module Billing
     accepts_nested_attributes_for :duties
     validates :full_name, presence: true
     validates :salary, numericality: { greater_than_or_equal_to: 0.01 }
+
+    def self.ransackable_attributes(auth_object = nil)
+      %w[id full_name salary created_at updated_at]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      %w[duties]
+    end
   end
 
   class Duty < ActiveRecord::Base
@@ -114,6 +126,14 @@ module Billing
 
     def common?
       duty_type == 'common'
+    end
+
+    def self.ransackable_attributes(auth_object = nil)
+      %w[id name duty_type employee_id created_at updated_at]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      %w[employee]
     end
   end
 end
