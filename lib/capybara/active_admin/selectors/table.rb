@@ -32,6 +32,7 @@ module Capybara
         def table_cell_selector(column = nil)
           return 'td.col' if column.nil?
 
+          # Downcase, strip non-alphanumeric chars (e.g. '/'), convert spaces to '_', deduplicate '_'
           column = column.to_s.downcase.gsub(/[^a-z0-9\s]/, '').gsub(/\s+/, '_').squeeze('_')
           "td.col.col-#{column}"
         end
