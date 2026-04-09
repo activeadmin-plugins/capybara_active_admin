@@ -29,8 +29,8 @@ end
 cuprite_opts = {
     js_errors: true,
     window_size: [1920, 1080],
-    timeout: 10,
-    process_timeout: 10,
+    timeout: ENV.fetch('CAPYBARA_TIMEOUT', 10).to_i,
+    process_timeout: ENV.fetch('CAPYBARA_PROCESS_TIMEOUT', 15).to_i,
     url_whitelist: %w[http://127.0.0.1:* http://localhost:* http://lvh.me:*],
     browser_options: {
         'disable-gpu' => nil,
