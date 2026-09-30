@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   # `exe/` matches the bindir below; `bin/` is setup/console dev scripts
   # and stays out.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    Dir['lib/**/*', 'exe/**/*', 'README.md', 'LICENSE.txt', 'CHANGELOG.md']
+    `git ls-files -z -- lib exe README.md LICENSE.txt CHANGELOG.md`.split("\x0")
   end
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
