@@ -18,10 +18,14 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri'] = spec.homepage
   spec.metadata['changelog_uri'] = "#{spec.homepage}/blob/master/CHANGELOG.md"
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  # Whitelist, not a reject list: a new directory in the repo does not
+  # reach consumers until it is named here. The reject form needs a new
+  # pattern every time the repo grows one, and that is how the VuePress site under docs/
+  # ended up published in the first place.
+  # `exe/` matches the bindir below; `bin/` is setup/console dev scripts
+  # and stays out.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+    `git ls-files -z -- lib exe README.md LICENSE.txt CHANGELOG.md`.split("\x0")
   end
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }

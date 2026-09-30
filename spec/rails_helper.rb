@@ -26,6 +26,26 @@ Capybara.configure do |config|
 end
 
 # Capybara JS driver
+#
+# CI occasionally dies with
+#
+#   Ferrum::ProcessTimeoutError: Browser did not produce websocket url
+#   within 15 seconds
+#
+# The cause is not established, and it does not reproduce locally (15
+# consecutive full-suite runs, clean). What the CI logs do show is that
+# it is not a cold-start problem: the failing `visit` is never the first
+# one in the run, and in the last occurrence the app was still serving
+# requests from a live browser three seconds into the window that timed
+# out. That points at a restart racing a browser that has not finished
+# dying, not at Chrome being unable to start.
+#
+# So CI sets CAPYBARA_PROCESS_TIMEOUT=60 (see .github/workflows/ci.yml)
+# and a rerun is the answer when it still happens. Two explanations were
+# tried and disproved in the sibling repos: /dev/shm exhaustion (Ferrum
+# already passes --disable-dev-shm-usage by default) and the
+# ubuntu-24.04 AppArmor userns restriction (this repo has passed
+# --no-sandbox all along and flakes anyway).
 cuprite_opts = {
     js_errors: true,
     window_size: [1920, 1080],

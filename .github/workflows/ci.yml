@@ -22,6 +22,12 @@ jobs:
     env:
       RAILS_VERSION: ${{ matrix.rails }}
       ACTIVE_ADMIN_VERSION: ${{ matrix.activeadmin }}
+      # Chrome occasionally fails to hand back a websocket URL within the
+      # 15s default and the leg dies with Ferrum::ProcessTimeoutError.
+      # See the note in spec/rails_helper.rb: it happens mid-suite, on a
+      # browser restart rather than a cold start, so a wider budget is
+      # the honest mitigation while the cause is unknown.
+      CAPYBARA_PROCESS_TIMEOUT: 60
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
