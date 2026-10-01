@@ -19,7 +19,20 @@ module Capybara
       # that call rather than approximating it, so every label lands on
       # the class ActiveAdmin actually rendered.
       def css_class_for_label(label)
-        label.to_s.parameterize(separator: '_')
+        css_class = label.to_s.parameterize(separator: '_')
+        return css_class if css_class.present?
+
+        # `parameterize` transliterates to Latin and drops the rest, so any
+        # label without Latin-transliterable characters -- 'Имя', '名前', '№',
+        # or a blank string -- comes back empty. ActiveAdmin makes the same
+        # call, so it renders `class="row row-"` for all of them, and a
+        # `.row-` selector would match every one at once: the matcher would
+        # pass against the wrong row instead of failing. Refuse to build it.
+        raise ArgumentError,
+              "cannot derive a CSS class from #{label.inspect}: " \
+              'ActiveAdmin parameterizes it to an empty string, so every such ' \
+              'row or column shares one class and cannot be told apart. ' \
+              'Match on text, or pass the attribute name instead of the label.'
       end
 
       def options_with_text(text, options = {})
