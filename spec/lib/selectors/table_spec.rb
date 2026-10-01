@@ -25,5 +25,20 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::Table do
     it 'strips other special characters from column name' do
       expect(helper.table_cell_selector('Price (USD)')).to eq('td.col.col-price_usd')
     end
+
+    # ActiveAdmin builds the class with `parameterize(separator: '_')`
+    # (TableFor::Column#html_class), so anything else is an approximation
+    # that drifts on labels like these.
+    it 'keeps a hyphen, the way parameterize does' do
+      expect(helper.table_cell_selector('E-mail')).to eq('td.col.col-e-mail')
+    end
+
+    it 'turns an apostrophe into a separator rather than dropping it' do
+      expect(helper.table_cell_selector("Customer's Name")).to eq('td.col.col-customer_s_name')
+    end
+
+    it 'trims a leading separator' do
+      expect(helper.table_cell_selector('# of DIDs')).to eq('td.col.col-of_dids')
+    end
   end
 end

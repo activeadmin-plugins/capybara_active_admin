@@ -190,6 +190,9 @@ ActiveAdmin.register Billing::Employee, as: 'Business Employee' do
           row :id
           row :full_name
           row(:salary) { |r| number_to_currency(r.salary) }
+          # Awkward label on purpose: ActiveAdmin renders this as
+          # `row-vat_tax_number`, and the gem's selector has to agree.
+          row('VAT / TAX Number') { |r| r.salary }
           row :created_at
           row :updated_at
         end

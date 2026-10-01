@@ -31,7 +31,7 @@ module Capybara
         def table_header_selector(text = nil, options = {})
           return 'thead > tr > th.col' if text.nil?
 
-          column = (options[:column] || text).to_s.tr(' ', '_').downcase
+          column = Util.css_class_for_label(options[:column] || text)
           selector = "th.col.col-#{column}"
           selector += '.sortable' if options[:sortable]
           selector += ".sorted-#{options[:sort_direction].to_s.downcase}" if options[:sort_direction].present?
@@ -43,8 +43,7 @@ module Capybara
         def table_cell_selector(column = nil)
           return 'td.col' if column.nil?
 
-          # Downcase, strip non-alphanumeric chars (e.g. '/'), convert spaces to '_', deduplicate '_'
-          column = column.to_s.downcase.gsub(/[^a-z0-9\s]/, '').gsub(/\s+/, '_').squeeze('_')
+          column = Util.css_class_for_label(column)
           "td.col.col-#{column}"
         end
 
