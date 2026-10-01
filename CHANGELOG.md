@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Next release is **2.0.0**: the selectors below build a different string than
+1.0.0 did for the same input, so a suite that passed on 1.0.0 can fail on this
+version without changing a line.
+
+### Migrating from 1.0.0
+
+ - If you wrote a helper that normalized labels before handing them to
+   `table_cell_selector` / `table_header_selector` / `attributes_row_selector`,
+   delete it. The gem now makes the same `parameterize(separator: '_')` call
+   ActiveAdmin makes, so normalizing twice corrupts the result — the second
+   pass strips the `_` the first one inserted.
+ - Labels with no Latin-transliterable characters (`'Имя'`, `'名前'`, `'№'`)
+   now raise instead of silently matching every such row. Match on text, or
+   pass the attribute name.
+ - Rails 7.2 is no longer tested.
+
 ### Changed
  - `table_cell_selector`, `table_header_selector` and `attributes_row_selector`
    now derive the CSS class with `parameterize(separator: '_')`, the same call
@@ -44,8 +60,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - `have_status_tag` matcher for status tag elements
 
 ### Changed
- - `within_sidebar` now scopes within the sidebar section directly using `ancestor`
- - `have_table_scope` now accepts an optional title as first positional argument and `selected:` keyword arg
+ - `have_table_scope` now accepts an optional title as first positional argument and `selected:` keyword arg.
+   **Breaking**, and not spelled out at the time: the `active:` key it replaced
+   is no longer consumed, so it falls through to `have_selector` and Capybara
+   rejects it with `ArgumentError: Invalid option(s) :active`. Rename
+   `active:` to `selected:`; the selector built is the same.
+ - `within_sidebar` now scopes within the sidebar section directly using `ancestor`.
+   **Breaking** for a block that relied on the old scope being the panel rather
+   than the whole `.sidebar_section`.
 
 ## [0.3.3] - 2020-04-17
 ### Changed
