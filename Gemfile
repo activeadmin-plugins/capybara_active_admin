@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'activeadmin', ENV.fetch('ACTIVE_ADMIN_VERSION', '~> 3.2')
-gem 'rails', ENV.fetch('RAILS_VERSION', '~> 7.1.0')
+gem 'rails', ENV.fetch('RAILS_VERSION', '~> 8.0.0')
 gem 'sprockets-rails'
 gem 'sassc-rails'
 
