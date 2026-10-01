@@ -55,17 +55,17 @@ RSpec.describe 'Users', js: true do
 
     within_table_for('users') do
       expect(page).to have_table_row(count: 2)
-      expect(page).to have_table_cell('John Doe')
+      expect(page).to have_table_cell(text: 'John Doe')
 
       within_table_row(id: john.id) do
-        expect(page).to have_table_cell('John Doe', row_id: john.id)
-        expect(page).to have_table_cell('John Doe', row_id: john.id, col_name: 'Full Name')
-        expect(page).to_not have_table_cell('John Doe', row_id: john.id, col_name: 'Id')
+        expect(page).to have_table_cell(text: 'John Doe')
+        expect(page).to have_table_cell(text: 'John Doe', column: 'Full Name')
+        expect(page).to_not have_table_cell(text: 'John Doe', column: 'Id')
       end
 
       within_table_row(id: jane.id) do
-        expect(page).to_not have_table_cell('John Doe')
-        expect(page).to_not have_table_cell('John Doe', col_name: 'Full Name')
+        expect(page).to_not have_table_cell(text: 'John Doe')
+        expect(page).to_not have_table_cell(text: 'John Doe', column: 'Full Name')
       end
     end
   end

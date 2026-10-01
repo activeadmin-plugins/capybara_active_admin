@@ -5,12 +5,27 @@ module Capybara
     module Util
       # Common pure utility functions
 
+      # Arbre derives a record's DOM name from
+      # `record.class.model_name.singular`, falling back to
+      # `name.underscore.gsub('/', '_')` (arbre html/tag.rb:164-168). Ask the
+      # model the same question instead of approximating it: `gsub(' ', '_')`
+      # leaves the `::` of a namespaced name in place, and
+      # `div.attributes_table.billing::employee` is not a selector -- Nokogiri
+      # raises `SyntaxError` on it with nothing pointing at the cause.
       def parse_model_name(model_name, singular: true)
         return if model_name.nil?
 
-        model_name = model_name.model_name.singular if model_name.is_a?(Class)
-        model_name = model_name.to_s.gsub(' ', '_').downcase
-        singular ? model_name.singularize : model_name.pluralize
+        if model_name.is_a?(Class) && model_name.respond_to?(:model_name)
+          name = model_name.model_name
+          return singular ? name.singular : name.plural
+        end
+
+        dom_model_name(model_name.is_a?(Class) ? model_name.name : model_name, singular: singular)
+      end
+
+      def dom_model_name(name, singular: true)
+        name = name.to_s.underscore.tr('/', '_').tr(' ', '_')
+        singular ? name.singularize : name.pluralize
       end
 
       # ActiveAdmin derives the CSS class of a row or column from the
@@ -41,7 +56,7 @@ module Capybara
         options.except(:exact).merge(key => text)
       end
 
-      module_function :parse_model_name, :css_class_for_label, :options_with_text
+      module_function :parse_model_name, :dom_model_name, :css_class_for_label, :options_with_text
     end
   end
 end

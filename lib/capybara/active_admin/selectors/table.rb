@@ -12,8 +12,12 @@ module Capybara
         def table_selector(resource_name = nil)
           return 'table.index_table' if resource_name.nil?
 
-          resource_name = resource_name.to_s.gsub(' ', '_').pluralize.downcase
-          "table#index_table_#{resource_name}"
+          # NOTE: ActiveAdmin builds this id from the registered resource name
+          # (`active_admin_config.resource_name.plural`, index_as_table.rb:240),
+          # which `register Model, as: 'Other Name'` detaches from the model.
+          # A class can only ever yield the model's own name, so a renamed
+          # resource has to be addressed by the name it was registered under.
+          "table#index_table_#{Util.parse_model_name(resource_name, singular: false)}"
         end
 
         # @param record_id [String, Integer, nil] record ID.

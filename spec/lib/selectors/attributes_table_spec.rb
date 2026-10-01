@@ -5,6 +5,21 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::AttributesTable do
     Class.new { include Capybara::ActiveAdmin::Selectors::AttributesTable }.new
   end
 
+  describe '#attributes_table_selector' do
+    it 'asks a model class for its DOM name' do
+      expect(helper.attributes_table_selector(model: Billing::Employee))
+        .to eq('div.attributes_table.billing_employee')
+    end
+
+    # Arbre uses `model_name.singular` — underscore, then '/' -> '_'. The
+    # previous `gsub(' ', '_')` kept the '::' and Nokogiri raised on
+    # `div.attributes_table.billing::employee`.
+    it 'underscores a namespaced name given as a string' do
+      expect(helper.attributes_table_selector(model: 'Billing::Employee'))
+        .to eq('div.attributes_table.billing_employee')
+    end
+  end
+
   describe '#attributes_row_selector' do
     # ActiveAdmin derives the class with the same `parameterize` call, so a
     # label it cannot transliterate renders as a bare `row-` on every such

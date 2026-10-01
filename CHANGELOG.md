@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+ - `attributes_table_selector`, `form_selector` and `table_selector` now ask the
+   model for its DOM name (`model_name.singular` / `.plural`, the same source
+   Arbre and ActiveAdmin use) instead of `gsub(' ', '_')`. A namespaced name
+   previously kept its `::` and produced `div.attributes_table.billing::employee`
+   — not a selector, so it aborted the example instead of failing it.
+   `table_selector` also accepts a model class now.
+
 ### Changed
  - `table_cell_selector`, `table_header_selector` and `attributes_row_selector`
    now derive the CSS class with `parameterize(separator: '_')`, the same call
