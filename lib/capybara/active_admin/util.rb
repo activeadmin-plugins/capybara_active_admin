@@ -13,13 +13,22 @@ module Capybara
         singular ? model_name.singularize : model_name.pluralize
       end
 
+      # ActiveAdmin derives the CSS class of a row or column from the
+      # label with `parameterize(separator: '_')` --
+      # `AttributesTable#row` and `TableFor::Column#html_class`. Mirror
+      # that call rather than approximating it, so every label lands on
+      # the class ActiveAdmin actually rendered.
+      def css_class_for_label(label)
+        label.to_s.parameterize(separator: '_')
+      end
+
       def options_with_text(text, options = {})
         key = options[:exact] ? :exact_text : :text
 
         options.except(:exact).merge(key => text)
       end
 
-      module_function :parse_model_name, :options_with_text
+      module_function :parse_model_name, :css_class_for_label, :options_with_text
     end
   end
 end

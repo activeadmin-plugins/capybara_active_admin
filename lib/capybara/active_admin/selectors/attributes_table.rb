@@ -18,7 +18,7 @@ module Capybara
         def attributes_row_selector(label = nil)
           return 'tr.row > td' if label.nil?
 
-          label = label.to_s.gsub(/[\s\/]/, '_').downcase
+          label = Util.css_class_for_label(label)
           "tr.row.row-#{label} > td"
         end
       end

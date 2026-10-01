@@ -32,6 +32,11 @@ RSpec.describe 'Business Employees show', js: true do
       expect(page).to have_attribute_row('Full name')
       expect(page).to have_attribute_row('Full name', text: record.full_name)
       expect(page).to have_attribute_row('Salary', exact_text: '$100.00')
+
+      # ActiveAdmin builds the row class with `parameterize(separator: '_')`,
+      # which collapses the ' / ' run into one separator. Any hand-rolled
+      # substitution drifts here, so assert against a real rendered page.
+      expect(page).to have_attribute_row('VAT / TAX Number', exact_text: '100.0')
     end
 
     switch_tab('Duties')

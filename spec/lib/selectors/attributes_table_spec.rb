@@ -18,6 +18,21 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::AttributesTable do
       expect(helper.attributes_row_selector('USA/UAH')).to eq('tr.row.row-usa_uah > td')
     end
 
+    # ActiveAdmin builds the class with `parameterize(separator: '_')`
+    # (AttributesTable#row), which collapses a run of separators into one.
+    it 'collapses a slash surrounded by spaces into a single separator' do
+      expect(helper.attributes_row_selector('VAT / TAX Number'))
+        .to eq('tr.row.row-vat_tax_number > td')
+    end
+
+    it 'collapses repeated whitespace' do
+      expect(helper.attributes_row_selector('DID  Number')).to eq('tr.row.row-did_number > td')
+    end
+
+    it 'drops a trailing separator' do
+      expect(helper.attributes_row_selector('Notes:')).to eq('tr.row.row-notes > td')
+    end
+
     it 'replaces spaces and slashes with underscores' do
       expect(helper.attributes_row_selector('A/B C')).to eq('tr.row.row-a_b_c > td')
     end
