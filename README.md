@@ -94,6 +94,67 @@ end
 See `spec/support` for more user examples.
 See `capybara/active_admin/test_helpers.rb` for available DSL methods.
 
+## How labels become selectors
+
+Most helpers take the label you see on the page and build a CSS selector from
+it, because that is how ActiveAdmin names its own elements. Two derivations are
+worth knowing, since a mismatch shows up as "element not found" with no hint of
+why.
+
+### Column and row labels
+
+ActiveAdmin builds the class with `parameterize(separator: '_')` —
+`AttributesTable#row` and `TableFor::Column#html_class` — and so does this gem:
+
+| label | class ActiveAdmin renders |
+| --- | --- |
+| `'Full Name'` | `col-full_name` |
+| `:full_name` | `col-full_name` |
+| `'VAT / TAX Number'` | `col-vat_tax_number` |
+| `'E-mail'` | `col-e-mail` |
+| `"Customer's Name"` | `col-customer_s_name` |
+| `'# of DIDs'` | `col-of_dids` |
+
+So pass the label as it appears, and do **not** normalize it yourself first —
+doing it twice strips the separator the first pass inserted.
+
+Two cases have no class to match:
+
+```ruby
+# ActiveAdmin renders class="row" with no row-* at all when you give your own
+row :salary, class: 'money'
+
+# parameterize drops everything non-Latin, so AA renders a bare class="row row-"
+# for every such label and they cannot be told apart. The gem raises rather
+# than match the wrong one.
+row 'Имя'
+```
+
+Match on text in both cases, or pass the attribute name rather than the label.
+
+### Model and resource names
+
+`have_attributes_table(model:)` and `within_form_for` follow the **model
+class** — Arbre uses `model_name.singular`:
+
+```ruby
+have_attributes_table(model: Billing::Employee)     # div.attributes_table.billing_employee
+have_attributes_table(model: 'Billing::Employee')   # same
+```
+
+`have_table(resource_name:)` and `within_table_for` follow the name the
+resource was **registered** under, which `as:` detaches from the model:
+
+```ruby
+ActiveAdmin.register Billing::Employee, as: 'Business Employee'
+
+within_table_for('Business Employee') { ... }   # table#index_table_business_employees
+within_table_for(Billing::Employee)   { ... }   # table#index_table_billing_employees -- wrong
+```
+
+A renamed resource has to be addressed by its registered name; the class cannot
+know it.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
