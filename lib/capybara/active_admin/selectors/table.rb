@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'capybara/active_admin/util'
+
 module Capybara
   module ActiveAdmin
     module Selectors
@@ -29,7 +31,7 @@ module Capybara
         # @option sort_direction [String, nil] sort direction ('asc' or 'desc').
         # @return selector.
         def table_header_selector(text = nil, options = {})
-          return 'thead > tr > th.col' if text.nil?
+          return 'thead > tr > th.col' if text.nil? && options[:column].nil?
 
           column = Util.css_class_for_label(options[:column] || text)
           selector = "th.col.col-#{column}"

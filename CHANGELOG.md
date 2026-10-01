@@ -7,7 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+ - `table_cell_selector`, `table_header_selector` and `attributes_row_selector`
+   now derive the CSS class with `parameterize(separator: '_')`, the same call
+   ActiveAdmin makes in `AttributesTable#row` and `TableFor::Column#html_class`,
+   instead of three different hand-rolled substitutions. Labels containing
+   punctuation change selector: `'E-mail'` was `col-email` and is now
+   `col-e-mail`, `"Customer's Name"` was `col-customers_name` and is now
+   `col-customer_s_name`, `:full_name` was `col-fullname` and is now
+   `col-full_name`. Previously these matched nothing (or raised
+   `Nokogiri::CSS::SyntaxError`), so an app carrying a workaround that
+   pre-normalized labels before calling these helpers should drop it.
+ - `table_header_selector(nil, column: 'x')` now honours the override instead
+   of returning the generic header selector.
  - tested against Ruby 3.3, 3.4, 4.0 and Rails 8.0, 8.1 (EOL Rails 7.2 dropped from CI)
+
+### Fixed
+ - a label that `parameterize` cannot transliterate (`'Имя'`, `'名前'`, `'№'`, or
+   a blank string) now raises `ArgumentError` instead of building a bare
+   `.row-` / `.col-` selector. ActiveAdmin renders the same empty class for
+   every such label, so that selector matched all of them at once and the
+   matcher could pass against the wrong row.
 
 ## [1.0.0] - 2026-04-09
 

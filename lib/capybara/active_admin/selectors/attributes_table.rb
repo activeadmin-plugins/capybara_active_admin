@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'capybara/active_admin/util'
+
 module Capybara
   module ActiveAdmin
     module Selectors

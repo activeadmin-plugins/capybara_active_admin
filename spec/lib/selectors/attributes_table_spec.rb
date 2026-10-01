@@ -6,6 +6,19 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::AttributesTable do
   end
 
   describe '#attributes_row_selector' do
+    # ActiveAdmin derives the class with the same `parameterize` call, so a
+    # label it cannot transliterate renders as a bare `row-` on every such
+    # row. Building that selector would match them all and pass against the
+    # wrong one, so it has to raise instead.
+    it 'refuses a label that parameterizes to nothing' do
+      expect { helper.attributes_row_selector('Имя') }
+        .to raise_error(ArgumentError, /cannot derive a CSS class from "Имя"/)
+    end
+
+    it 'refuses a blank label' do
+      expect { helper.attributes_row_selector('   ') }.to raise_error(ArgumentError)
+    end
+
     it 'returns a generic row selector when no label given' do
       expect(helper.attributes_row_selector).to eq('tr.row > td')
     end
@@ -14,7 +27,7 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::AttributesTable do
       expect(helper.attributes_row_selector('Full name')).to eq('tr.row.row-full_name > td')
     end
 
-    it 'replaces slash with underscore to match ActiveAdmin class generation' do
+    it 'substitutes a slash with the separator' do
       expect(helper.attributes_row_selector('USA/UAH')).to eq('tr.row.row-usa_uah > td')
     end
 

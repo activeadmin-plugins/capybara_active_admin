@@ -36,6 +36,11 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::Table do
         .to eq('thead > tr > th.col.col-vat_tax_number')
     end
 
+    it 'honours a column override even with no visible text' do
+      expect(helper.table_header_selector(nil, column: 'full_name'))
+        .to eq('thead > tr > th.col.col-full_name')
+    end
+
     it 'appends the sortable and sorted classes' do
       expect(helper.table_header_selector('Full Name', sortable: true, sort_direction: 'DESC'))
         .to eq('thead > tr > th.col.col-full_name.sortable.sorted-desc')
@@ -47,6 +52,12 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::Table do
       expect(helper.table_cell_selector).to eq('td.col')
     end
 
+    # `column :full_name` is the commonest input of all, and the derivation
+    # this replaced stripped the underscore out of it: col-fullname.
+    it 'keeps the underscore in a symbol attribute name' do
+      expect(helper.table_cell_selector(:full_name)).to eq('td.col.col-full_name')
+    end
+
     it 'converts spaces to underscores' do
       expect(helper.table_cell_selector('Full Name')).to eq('td.col.col-full_name')
     end
@@ -55,11 +66,11 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::Table do
       expect(helper.table_cell_selector('ID')).to eq('td.col.col-id')
     end
 
-    it 'strips slashes from column name' do
+    it 'substitutes a slash with the separator' do
       expect(helper.table_cell_selector('Country / Region')).to eq('td.col.col-country_region')
     end
 
-    it 'strips other special characters from column name' do
+    it 'substitutes bracket punctuation with the separator' do
       expect(helper.table_cell_selector('Price (USD)')).to eq('td.col.col-price_usd')
     end
 
