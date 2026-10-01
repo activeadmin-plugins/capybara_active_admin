@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+ - tested against Ruby 3.3, 3.4, 4.0 and Rails 8.0, 8.1 (EOL Rails 7.2 dropped from CI)
+
 ## [1.0.0] - 2026-04-09
 
 ### Added
