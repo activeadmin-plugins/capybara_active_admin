@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+ - `attributes_table_selector`, `form_selector` and `table_selector` now ask the
+   model for its DOM name (`model_name.singular` / `.plural`, the same source
+   Arbre and ActiveAdmin use) instead of `gsub(' ', '_')`. A namespaced name
+   previously kept its `::` and produced `div.attributes_table.billing::employee`
+   — not a selector, so it aborted the example instead of failing it.
+   `table_selector` also accepts a model class now.
+
 ### Changed
  - tested against Ruby 3.3, 3.4, 4.0 and Rails 8.0, 8.1 (EOL Rails 7.2 dropped from CI)
 

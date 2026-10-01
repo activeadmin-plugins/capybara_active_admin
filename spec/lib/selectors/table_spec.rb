@@ -42,6 +42,27 @@ RSpec.describe Capybara::ActiveAdmin::Selectors::Table do
     end
   end
 
+  describe '#table_selector' do
+    it 'returns the generic selector when no resource name given' do
+      expect(helper.table_selector).to eq('table.index_table')
+    end
+
+    it 'builds the id from a registered resource name' do
+      expect(helper.table_selector('Business Employee')).to eq('table#index_table_business_employees')
+    end
+
+    # ActiveAdmin's id comes from `resource_name.plural`, which underscores the
+    # namespace. `gsub(' ', '_')` left the `::` in place, and Nokogiri raises
+    # on `table#index_table_billing::employees`.
+    it 'underscores a namespaced name instead of leaving ::' do
+      expect(helper.table_selector('Billing::Employee')).to eq('table#index_table_billing_employees')
+    end
+
+    it 'asks a model class for its own plural' do
+      expect(helper.table_selector(Billing::Employee)).to eq('table#index_table_billing_employees')
+    end
+  end
+
   describe '#table_cell_selector' do
     it 'returns generic selector when column is nil' do
       expect(helper.table_cell_selector).to eq('td.col')
